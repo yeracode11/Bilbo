@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/details.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+  <title>Details</title>
+  <style>
+    body{
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #F3F6FF;
+      position: relative;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      color: #000;
+    }
+
+    div, p, input, header, a, form {
+      box-sizing: border-box;
+    }
+
+    ul, li {
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+
+    .container {
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      padding: 20px 0 40px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .shops {
+      display: flex;
+      align-items: center;
+    }
+
+    .enter {
+      margin-right: 15px;
+    }
+
+    .nav h1 {
+      color: #0E0B85;
+      width: 10%;
+      text-align: center;
+    }
+
+    .cart {
+      font-weight: 800;
+    }
+
+    .sub-menu {
+      background: #fff;
+      padding: 20px;
+      margin: 10px;
+    }
+
+    .uer-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .uer-info h3 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .uer-info img {
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .sub-menu hr {
+      border: 0;
+      height: 1px;
+      width: 100%;
+      background: #ccc;
+      margin: 15px 0 10px;
+    }
+
+    .sub-menu-wrap {
+      position: absolute;
+      top: 84%;
+      right: -8px;
+      width: 260px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+
+    .sub-menu-wrap.open-menu {
+      max-height: 400px;
+    }
+
+    .sub-menu-link {
+      display: flex;
+      align-items: center;
+      color: #525252;
+      margin: 12px 0;
+    }
+
+    .sub-menu-link p {
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .sub-menu-link i {
+      margin-right: 10px;
+      width: 18px;
+      background: #e5e5e5;
+      border-radius: 50%;
+      padding: 8px;
+    }
+
+    .sub-menu-link span {
+      font-size: 22px;
+      transition: transform 0.5s;
+
+    }
+
+    .sub-menu-link:hover span{
+      transform: translateX(5px);
+    }
+
+    .sub-menu-link:hover p {
+      font-weight: 600;
+    }
+
+
+    .sidebar_items {
+      display: flex;
+      align-items: center;
+      padding: 15px 0;
+      justify-content: space-between;
+    }
+
+
+    .sidebar_items h2{
+      margin-right: 70px;
+      color: #000;
+      width: 290px;
+      font-size: 30px;
+    }
+
+    .sidebar_items h2 span {
+      color: #F4624B;
+    }
+
+
+    .bilbo {
+      background: #FFF;
+      padding: 20px 0;
+      border-radius: 30px 0px 0px 30px;
+      margin-left: 12px;
+      width: 308px;
+    }
+
+    .mapBilbo{
+      display: block;
+      width: 323px;
+      padding-bottom: 20px;
+      margin-right: 20px;
+    }
+
+    .bilbo a {
+      color: #A52800;
+      margin-left: 60px;
+    }
+
+    .bilbo_cards {
+      display: flex;
+    }
+
+    .cards {
+      display: block;
+    }
+    .cards_item {
+      display: flex;
+      width: 100%;
+      padding: 30px 50px;
+      margin-bottom: 20px;
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      border-radius: 11px;
+      justify-content: space-between;
+    }
+
+    .image {
+      width: 320px;
+    }
+
+    .image img {
+      width: 100%;
+      height: 268px;
+      border: 1px solid #00145B;
+      border-radius: 10px;
+    }
+
+    .text {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .text_item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .text_item:last-child {
+      margin-bottom: 20px;
+    }
+
+    .text_item h3 {
+      width:  120px;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .text_item h3:nth-child(6n) {
+      margin-bottom: 0;
+    }
+    .text_item p {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .text_item p:nth-child(6n) {
+      margin-bottom: 0;
+    }
+
+    .id {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .id h3 {
+      margin-right: 10px;
+    }
+
+
+    .order_circles button {
+      width: 40px;
+      height: 40px;
+      font-weight: 800;
+      border-radius: 100%;
+      border: none;
+    }
+
+
+    .order_first button {
+      margin-right: 3px;
+      margin-bottom: 10px;
+      background: #4BD4FF;
+    }
+
+    .order_first button:nth-child(6n) {
+      margin-right: 0;
+    }
+
+    .order_second button {
+      margin-right: 3px;
+      background: #FF5959;
+    }
+
+    .order_second button:nth-child(6n) {
+      margin-right: 0;
+    }
+
+    .order_second {
+      margin-bottom: 23px;
+    }
+    .btn {
+      display: flex;
+      justify-content: end;
+      align-items: center;
+    }
+
+    .btn .detail button{
+      width: 150px;
+      padding: 6px;
+      border-radius: 10px;
+      background: #A52800;
+      color: #FFF;
+      margin-right: 15px;
+      cursor: pointer;
+    }
+
+    .btn .delete button {
+      width: 100px;
+      padding: 6px;
+      border-radius: 10px;
+      background: #525252;
+      color: #FFF;
+      cursor: pointer;
+    }
+
+    .boxed {
+      display: flex;
+    }
+
+
+    .btn_link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+
+    .link a {
+      font-weight: 400;
+    }
+
+    .link a:last-child{
+      font-weight: 600;
+    }
+
+    #justText{
+      margin-bottom: 10px;
+    }
+
+    .toBasket{
+      display: block;
+      background: #AC2F07;
+      border: 1px solid #000000;
+      border-radius: 20px;
+      color: #fff;
+      padding: 10px;
+      width: 175px;
+      margin: 0 auto;
+      margin-top: 50px;
+      border: none;
+    }
+
+
+    .calendar-container {
+      width: 400px;
+      margin: auto;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+    }
+
+    .month {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #eee;
+      padding: 10px;
+    }
+
+    .days-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 10px;
+    }
+
+    .day {
+      width: calc(100% / 7);
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+
+    .booked {
+      background-color: #ffcccb;
+    }
+
+    .selected {
+      background-color: #4169e1;
+      color: #fff;
+    }
+
+    .disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+
+
+    #header {
+      color: #d36c6c;
+      font-size: 26px;
+      font-family: sans-serif;
+      text-align: end;
+    }
+    #header button {
+      background-color:#92a1d1;
+    }
+    #container {
+      width: 770px;
+    }
+    #weekdays {
+      width: 100%;
+      display: flex;
+      color: #247BA0;
+      justify-content: end;
+    }
+    #weekdays div {
+      width: 50px;
+      padding: 10px;
+    }
+
+    .calendar {
+      width: 50%;
+      display: block;
+    }
+    #calendar {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: end;
+    }
+    .day {
+      width: 40px;
+      padding: 5px;
+      height: 40px;
+      cursor: pointer;
+      box-sizing: border-box;
+      background-color: white;
+      margin: 5px;
+      box-shadow: 0px 0px 3px #CBD4C2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .day:hover {
+      background-color: #e8faed;
+    }
+
+    .day + #currentDay {
+      background-color:#e8f4fa;
+    }
+    .event {
+      font-size: 10px;
+      padding: 3px;
+      background-color: #58bae4;
+      color: white;
+      border-radius: 5px;
+      max-height: 55px;
+      overflow: hidden;
+    }
+    .padding {
+      cursor: default !important;
+      background-color: #FFFCFF !important;
+      box-shadow: none !important;
+    }
+    #newEventModal, #deleteEventModal {
+      display: none;
+      z-index: 20;
+      padding: 50px 54px;
+      background-color: #FFF0DB;
+      box-shadow: 0px 0px 3px black;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      width: 460px;
+      position: absolute;
+      font-family: sans-serif;
+      text-align: center;
+      margin: -88px auto;
+    }
+    /* #eventTitleInput {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px gray;
+    } */
+    #eventTitleInput.error {
+      border: 2px solid red;
+    }
+    #cancelButton, #deleteButton {
+      background-color: #D70000;
+    }
+    #saveButton, #closeButton {
+      background-color: #4D49FF;
+    }
+    #eventText {
+      font-size: 14px;
+    }
+    #modalBackDrop {
+      display: none;
+      top: 0px;
+      left: 0px;
+      z-index: 10;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .inputs {
+      display: block;
+      text-align: center;
+    }
+
+    #newEventModal h2 {
+      margin-bottom: 20px;
+    }
+
+    .inputs input{
+      width: 350px;
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .inputs input:nth-child(2n){
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+    }
+
+    .buttons button {
+      margin-right: 10px;
+      width: 115px;
+      padding: 10px;
+      border: 1px solid #000000;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .day + .pastDay {
+      color: white;
+      background-color: #525351;
+    }
+
+
+    .day + .pastDay:hover {
+      background-color: #525351;
+    }
+
+    .start p {
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .end p {
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .start input {
+      width: 350px;
+      padding: 15px 10px 15px 10px;
+      border-radius: 10px;
+      border: none;
+      background: #fff;
+      font-size: 18px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .end {
+      margin-bottom: 30px;
+    }
+
+    .end input {
+      width: 350px;
+      padding: 15px 10px 15px 10px;
+      border-radius: 10px;
+      border: none;
+      background: #fff;
+      font-size: 18px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .start {
+      margin-bottom: 15px;
+    }
+
+    .save-cancel button {
+      display: flex;
+      border: none;
+      width: 132px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      justify-content: center;
+      color: #ffff;
+      font-weight: 600;
+      margin-right: 15px;
+    }
+
+    .green{
+      color: green;
+    }
+
+    .save-cancel button:nth-child(2){
+      margin-left: 15px;
+    }
+
+    .save-cancel {
+      display: flex;
+      border-radius: 10px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    .tel input{
+      width: 350px;
+      padding: 10px;
+      background: #FFFFFF;
+      border: 1px solid #000000;
+      border-radius: 10px;
+    }
+
+    .tel {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 25px;
+    }
+
+    .tel p{
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .tel p:nth-child(2) {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    /*Modal window*/
+    #myModal {
+      width: 340px;
+      height: 230px;
+      padding: 52px 9px;
+      border-radius: 4px;
+      background: #FFFCDE;
+      font-size: 30px;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      margin: auto;
+      display: none;
+      opacity: 0;
+      z-index: 38;
+      text-align: center;
+    }
+
+    #myModal #myModal__close {
+      width: 21px; height: 21px;
+      position: absolute;
+      font-size: 29px;
+      top: 1px; right: 11px;
+      cursor: pointer;
+      display: block;
+    }
+
+    #myOverlay {
+      z-index: 37;
+      position: fixed;
+      background: rgba(0,0,0,.7);
+      width: 100%; height: 100%;
+      top: 0; left: 0;
+      cursor: pointer;
+      display: none;
+    }
+
+    #myModal h3 {
+      font-size: 22px;
+      padding-bottom: 26px;
+    }
+
+    #myModal button {
+      width: 130px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #A52800;
+      color: #FFF;
+      margin-right: 15px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    #myModal button:nth-child(2n){
+      background: #6b6b6b;
+      margin-right: 0;
+    }
+
+    .modal_btn p{
+      font-size: 18px;
+    }
+
+    .countPeriods {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .info-month button {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #000000;
+      margin-right: 10px;
+    }
+
+    .grey {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .grey button {
+      background: grey;
+    }
+
+    .blue {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .blue button {
+      background: green;
+    }
+
+    .red {
+      display: flex;
+      align-items: center;
+    }
+
+    .red button {
+      background: #d95914;
+    }
+
+
+    .date {
+      display: flex;
+      align-items: center;
+      background: #A52800;
+      margin-bottom: 10px;
+      width: 250px;
+      justify-content: center;
+      color: #fff;
+      font-weight: 600;
+      padding: 10px 0;
+      border-radius: 21px;
+      font-size: 15px;
+    }
+
+    .ordered-days h4 {
+      font-size: 17px;
+      margin-top: 18px;
+      margin-bottom: 10px;
+    }
+
+    .text-circles{
+      margin-right: 7px;
+    }
+
+    .ordered-days {
+      display: block;
+      margin-left: 34px;
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <h1>Happy Clients</h1>
+      <div class="shops">
+        <div class="enter">
+          <img  style="height: 40px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="user-pic" onclick="toggleMenu()">
+        </div>
+        <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+            <div class="uer-info">
+              <img style="height: 40px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="img2">
+              <h3 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></h3>
+            </div>
+            <hr>
+            <a th:href="@{'/admin/main/'}" class="sub-menu-link" sec:authorize="hasAuthority('MANAGER')">
+              <i class="fa-solid fa-user"></i>
+              <p>Admin page</p>
+              <span>></span>
+            </a>
+            <a th:href="@{'/editOrViewProfile/'}" class="sub-menu-link">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <p>Edit profile</p>
+              <span>></span>
+            </a>
+            <a class="sub-menu-link" href="JavaScript:void(0)"
+               onclick="singOutForm.submit()">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <p>Log out</p>
+              <form th:action="@{'/signOut'}" method="post" id="singOutForm"></form>
+              <span>></span>
+            </a>
+          </div>
+        </div>
+        <div class="cart">
+          <a th:href="@{'/basket/'}">
+            <span>My Orders</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+<section class="bilbo_info">
+  <div class="container">
+    <div class="btn_link">
+      <div class="link">
+        <a th:href="@{'/mainPage/'}">Home /</a>
+        <a href="">Details</a>
+      </div>
+    </div>
+    <div class="bilbo_cards">
+      <div class="mapBilbo">
+        <div class="image">
+          <img th:src="@{'/admin/getAva/' + ${billboard.billboard_url}}" alt="">
+        </div>
+        <!--        <div class="map">-->
+        <!--          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d726.6435518261171!2d76.89978050944056!3d43.23938995719873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2skz!4v1681543980564!5m2!1sen!2skz"-->
+        <!--                  width="315" height="290" style="border-radius: 10px;" allowfullscreen="" loading="lazy"-->
+        <!--                  referrerpolicy="no-referrer-when-downgrade"></iframe>-->
+        <!--        </div>-->
+      </div>
+      <div class="cards">
+        <div class="cards_item">
+          <div class="all-data">
+            <div class="text">
+              <div class="text-items">
+                <div class="text_item">
+                  <h3>City:</h3>
+                  <p th:text="${cities[billboard.city_id].name}"></p>
+                </div>
+                <div class="text_item">
+                  <h3>Location:</h3>
+                  <p th:text="${locations[billboard.location_id].name}"></p>
+                </div>
+                <div class="text_item">
+                  <h3>Type:</h3>
+                  <p th:text="${billboard.type}"></p>
+                </div>
+                <div class="text_item">
+                  <h3>Size:</h3>
+                  <p th:text="${billboard.size}"></p>
+                </div>
+                <div class="text_item">
+                  <h3>Price:</h3>
+                  <p th:text="${billboard.price} + '$(per month)'"></p>
+                </div>
+                <div class="text_item">
+                  <h3>Lighting:</h3>
+                  <p th:text="${billboard.isHasLightning == true ? 'Available' : 'Not Available'}"></p>
+                </div>
+              </div>
+            </div>
+            <p id="justText">Select the required time periods</p>
+            <p style="color: #0E0B85; font-weight: bold">[1-12] - Months</p>
+            <div class="order_circles">
+              <div class="order_first">
+                <th:block th:each="month : ${#numbers.sequence(1, 6)}">
+                  <button th:id="'m' + ${month}"
+                          th:style="${currentMonth > month ? 'background: grey' : (orderedMonths.contains(month) ? 'background: #d95914' : 'background:#1d9243')}"
+                          th:disabled="${currentMonth > month}" th:text="${month}"></button>
+                </th:block>
+              </div>
+              <div class="order_second">
+                <th:block th:each="month : ${#numbers.sequence(7, 12)}">
+                  <button th:id="'m' + ${month}"
+                          th:style="${currentMonth > month ? 'background: grey' : (orderedMonths.contains(month) ? 'background: #d95914' : 'background:#1d9243')}"
+                          th:disabled="${currentMonth > month}" th:text="${month}"></button>
+                </th:block>
+              </div>
+              <div class="countPeriods">
+                <div class="info-month">
+                  <div class="grey">
+                    <button></button>
+                    <p> - Past months</p>
+                  </div>
+
+                  <div class="blue">
+                    <button></button>
+                    <p> - Free periods of the month</p>
+                  </div>
+                  <div class="red">
+                    <button></button>
+                    <p> - Has busy periods of the month</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="calendar">
+            <div id="header">
+              <div id="monthDisplay"></div>
+              <div>
+                <button id="backButton" hidden>Back</button>
+                <button id="nextButton" hidden>Next</button>
+              </div>
+            </div>
+
+            <div id="weekdays">
+              <div>Sun</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+            </div>
+
+            <div id="calendar"></div>
+            <div class="ordered-days">
+              <h4>The ordered days of this billboard:</h4>
+              <div th:if="${#lists.isEmpty(billboardOrders)}">
+                <p>Have not ordered yet</p>
+              </div>
+              <div class="date" th:if="${not #lists.isEmpty(billboardOrders)}" th:each="order : ${billboardOrders}">
+                <p th:text="${order.startDate} + '  -  '"></p>
+                <p th:text="${order.endDate}"></p>
+              </div>
+            </div>
+          </div>
+
+          <div id="newEventModal">
+            <form th:action="@{'/order/orderBillboard'}" method="post">
+              <h2>New Event</h2>
+              <input type="hidden" name="billboardId" th:value="${billboard.id}"/>
+
+              <div class="start">
+                <p>Start Date:</p>
+                <input type="text" id="eventTitleInput" name="startDate" value="" readonly/>
+              </div>
+              <div class="end">
+                <p>End Date:</p>
+                <input type="text" id="eventTitleInput2" name="endDate" value="" readonly/>
+              </div>
+
+              <div class="end" style="margin-bottom: 20px">
+                <p th:text="'Price: '+ ${billboard.price} + '$(per month)'" style="color: green"></p>
+              </div>
+
+              <div class="tel">
+                <p>Please leave your phone number</p>
+                <p>(In order for our managers to be able to contact you)</p>
+                <input type="tel" id="phone" name="phone"
+                       pattern="[8]{1}[0-7]{3}[0-9]{3}[0-9]{2}[0-9]{2}"
+                       placeholder="87277777777" required>
+
+              </div>
+
+              <div class="save-cancel">
+                <button type="submit" id="saveButton">Order</button>
+                <button type="button" id="cancelButton">Cancel</button>
+              </div>
+              <!--                        <p class="green">Successfully added to basket</p>-->
+            </form>
+          </div>
+
+          <div id="deleteEventModal">
+            <h2>Event</h2>
+
+            <p id="eventText"></p>
+
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+          </div>
+
+          <div id="modalBackDrop"></div>
+        </div>
+      </div>
+      <!-- <button type="button" class="toBasket">Add to Basket</button> -->
+    </div>
+  </div>
+  </div>
+</section>
+<div id="myModal">
+  <h3>Thanks!</h3>
+  <div class="modal_btn">
+    <p>Successfully ordered! We are starting to work your order! To further actions wait the Manager call!</p>
+  </div>
+  <span id="myModal__close" class="close">ₓ</span>
+</div>
+
+<div id="myOverlay"></div>
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    if (window.location.search.includes('successful')) {
+      $('#myOverlay').fadeIn(297, function() {
+        $('#myModal')
+                .css('display', 'block')
+                .animate({opacity: 1}, 198);
+      });
+    }
+  });
+
+  $('#myModal__close, #myOverlay').click( function(){
+    $('#myModal').animate({opacity: 0}, 198, function(){
+      $(this).css('display', 'none');
+      $('#myOverlay').fadeOut(297);
+    });
+  });
+  $('#close, #myOverlay').click( function(){
+    $('#myModal').animate({opacity: 0}, 198, function(){
+      $(this).css('display', 'none');
+      $('#myOverlay').fadeOut(297);
+    });
+  });
+</script>
+<script>
+  let subMenu = document.getElementById("subMenu");
+
+  function toggleMenu() {
+    subMenu.classList.toggle("open-menu");
+  }
+</script>
+<script>
+  let nav = 0;
+  let clicked = null;
+  let selectedDay;
+  let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+  const calendar = document.getElementById('calendar');
+  const newEventModal = document.getElementById('newEventModal');
+  const deleteEventModal = document.getElementById('deleteEventModal');
+  const backDrop = document.getElementById('modalBackDrop');
+  const eventTitleInput = document.getElementById('eventTitleInput');
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  function openModal(date) {
+    clicked = date;
+
+    selectedDay = date; // Store the selected day in the variable
+    let eventDate = Date.parse(date);
+    const startDate = document.getElementById('eventTitleInput');
+    const endDate = document.getElementById('eventTitleInput2');
+    startDate.value = `${date}`;
+    // document.getElementById('eventTitleInput').value = `${date}`;
+    let finishTime = new Date(eventDate + 30 * 24 * 60 * 60 * 1000);
+    endDate.value = `${finishTime.toLocaleDateString("ja-JP")}`;
+    // document.getElementById('eventTitleInput2').value = `${finishTime.toLocaleDateString("ja-JP")}`;
+
+    const eventForDay = events.find(e => e.date === clicked);
+
+    if (eventForDay) {
+      document.getElementById('eventText').innerText = eventForDay.title;
+      deleteEventModal.style.display = 'block';
+    } else {
+      newEventModal.style.display = 'block';
+    }
+
+    backDrop.style.display = 'block';
+  }
+
+  function load() {
+    const dt = new Date();
+
+    if (nav !== 0) {
+      dt.setMonth(new Date().getMonth() + nav);
+    }
+
+    const day = dt.getDate();
+    const month = dt.getMonth();
+    const year = dt.getFullYear();
+
+    const firstDayOfMonth = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+    });
+    const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+
+    document.getElementById('monthDisplay').innerText =
+            `${dt.toLocaleDateString('en-us', {month: 'long'})} ${year}`;
+
+    calendar.innerHTML = '';
+
+    for (let i = 1; i <= paddingDays + daysInMonth; i++) {
+      const daySquare = document.createElement('div');
+      daySquare.classList.add('day');
+
+      const dayString = `${year}/${month + 1}/${i - paddingDays}`;
+
+      if (i > paddingDays) {
+        daySquare.innerText = i - paddingDays;
+        const eventForDay = events.find(e => e.date === dayString);
+
+        if (i - paddingDays === day && nav === 0) {
+          daySquare.id = 'currentDay';
+        }
+
+        if (i - paddingDays < day && nav === 0) {
+          daySquare.classList.add('pastDay'); // Add class to style past days
+        } else {
+
+          daySquare.addEventListener('click', () => openModal(dayString));
+        }
+
+        if (eventForDay) {
+          const eventDiv = document.createElement('div');
+          eventDiv.classList.add('event');
+          eventDiv.innerText = eventForDay.title;
+          daySquare.appendChild(eventDiv);
+        }
+
+      } else {
+        daySquare.classList.add('padding');
+      }
+
+      calendar.appendChild(daySquare);
+    }
+  }
+
+  function closeModal() {
+    eventTitleInput.classList.remove('error');
+    newEventModal.style.display = 'none';
+    deleteEventModal.style.display = 'none';
+    backDrop.style.display = 'none';
+    eventTitleInput.value = '';
+    clicked = null;
+    load();
+  }
+
+  function saveEvent() {
+    if (eventTitleInput.value) {
+      eventTitleInput.classList.remove('error');
+
+      events.push({
+        date: clicked,
+        title: eventTitleInput.value,
+      });
+
+      localStorage.setItem('events', JSON.stringify(events));
+      closeModal();
+    } else {
+      eventTitleInput.classList.add('error');
+    }
+  }
+
+  function deleteEvent() {
+    events = events.filter(e => e.date !== clicked);
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
+  }
+
+
+  function initButtons() {
+    document.getElementById('nextButton').addEventListener('click', () => {
+      nav++;
+      load();
+    });
+
+    document.getElementById('backButton').addEventListener('click', () => {
+      nav--;
+      load();
+    });
+
+    // Loop through all the buttons and attach a single event listener
+    for (let i = 1; i <= 12; i++) {
+      document.getElementById(`m${i}`).addEventListener('click', () => {
+        const dt = new Date();
+        let m = dt.getMonth();
+        let x = parseInt(m) + 1;
+        nav = i - x;
+        load();
+      });
+    }
+
+    // document.getElementById('saveButton').addEventListener('click', saveEvent);
+    document.getElementById('cancelButton').addEventListener('click', closeModal);
+    document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+    document.getElementById('closeButton').addEventListener('click', closeModal);
+  }
+
+  initButtons();
+  load();
+</script>
+</body>
+</html>

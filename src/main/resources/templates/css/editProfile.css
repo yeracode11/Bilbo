@@ -1,0 +1,552 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 250, 233, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+    color: #000;
+}
+
+div, p, input, header, a, form {
+	box-sizing: border-box;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 20px 0 40px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.shops {
+    display: flex;
+    align-items: center;
+}
+
+.enter {
+    margin-right: 15px;
+}
+
+.nav h1 {
+    color: #AC2F07;
+    width: 10%;
+    text-align: center;
+}
+
+.cart {
+    font-weight: 800;
+}
+
+.sub-menu {
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+}
+
+.uer-info {
+    display: flex;
+    align-items: center;
+}
+
+.uer-info h3 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.uer-info img {
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sub-menu hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10px;
+}
+
+.sub-menu-wrap {
+    position: absolute;
+    top: 84%;
+    right: -8px;
+    width: 260px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu {
+    max-height: 400px;
+}
+
+.sub-menu-link {
+    display: flex;
+    align-items: center;
+    color: #525252;
+    margin: 12px 0;
+}
+
+.sub-menu-link p {
+    width: 100%;
+    font-size: 16px;
+}
+
+.sub-menu-link i {
+    margin-right: 10px;
+    width: 18px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.sub-menu-link span {
+    font-size: 22px;
+    transition: transform 0.5s;
+
+}
+
+.sub-menu-link:hover span{
+    transform: translateX(5px);
+}
+
+.sub-menu-link:hover p {
+    font-weight: 600;
+}
+
+
+.sidebar_items {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    justify-content: space-between;
+}
+
+
+.sidebar_items h2{
+    margin-right: 70px;
+    color: #000;
+    width: 290px;
+    font-size: 30px;
+}
+
+.sidebar_items h2 span {
+    color: #F4624B;
+}
+
+.btn_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+
+.link a {
+    font-weight: 600;
+}
+
+.link a:nth-child(1){
+    font-weight: 400;
+}
+
+.save-btn {
+    display: flex;
+    align-items: center;
+}
+
+.save-btn button {
+    width: 341px;
+    background: #AC2F07;
+    border-radius: 8px;
+    padding: 8px;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.save-btn button:nth-child(2) {
+    background: #525252;
+    margin-right: 0;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    background-color: #fff;
+}
+
+
+.first {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    place-items: center;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    margin: 0 auto;
+}
+
+.first .image {
+    position: absolute;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.first .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 100px;
+    border: 2px solid #AC2F07;
+}
+
+.first .icon {
+    font-size: 100px;
+    color: #A52800;
+}
+
+.first .text {
+    font-size: 20px;
+    color: #A52800;
+    font-weight: 500;
+}
+
+
+.first  #cancel_btn {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #A52800;
+    display: none;
+}
+
+.first.active:hover #cancel_btn {
+    display: block;
+}
+
+.first #cancel_btn:hover {
+    color:  #D33232;
+}
+
+.first #file_name {
+    position: absolute;
+    bottom: 0;
+    color: #FFF;
+    padding: 8px 0;
+    width: 100%;
+    font-size: 18px;
+    background: #A52800;
+    display: none;
+}
+
+.first.active:hover #file_name{
+    display: block;
+}
+
+.first.active {
+    border: none;
+}
+
+
+#custom-btn {
+    width: 150px;
+    height: 40px;
+    display: block;
+    border: none;
+    background-color: #D33232;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+    margin: 10px auto 20px;
+}
+
+
+#upd_btn {
+    margin-top: 10px;
+    width: 100%;
+    height: 50px;
+    display: block;
+    border: none;
+    background-color: #D33232;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.main_profile {
+    margin-right: 100px;
+    margin-top: 64px;
+}
+
+.input-btn {
+    width: 152px;
+    font-size: 12px;
+}
+
+.main-info {
+    display: flex;
+}
+
+
+.main-info h3 {
+    font-weight: 600;
+    font-size: 18px;
+    text-decoration: solid underline rgba(165, 40, 0, 1) 0px;
+    text-underline-offset: 10px;
+    margin-bottom: 25px;
+}
+
+.surLastNames {
+    display: flex;
+    width: 321px;
+    margin-bottom: 15px;
+}
+
+.surLastNames label{
+    margin-right: 27px;
+}
+
+.surLastNames label input{
+    width: 200px;
+}
+
+.password-mail label span {
+    margin-bottom: 10px;
+}
+
+label span{
+    font-size: 14px;
+    display: block;
+}
+
+label {
+    font-size: 13px;
+}
+
+input {
+    border-radius: 10px;
+    border: none;
+    padding: 10px 10px 10px 13px;
+    margin-top: 5px;
+    border: 1px solid #000000;
+}
+
+
+.input-password {
+    position: relative;
+    display: flex;
+    width: 429px;
+    align-items: center;
+    margin-bottom:  13px;
+}
+
+.input-password input{
+    border-radius: 10px 0 0 10px;
+    width: 278px;
+    margin-top: 0;
+    position: relative;
+}
+
+.input-password input[type=text]{
+    border-radius: 10px 0 0 10px;
+    width: 278px;
+    margin-top: 0;
+}
+
+.input-img {
+    position: absolute;
+    top: 12px;
+    right: 159px;
+    cursor: pointer;
+}
+
+.input-img img {
+    width: 20px;
+    height: 20px;
+}
+
+.input-password button{
+    border: none;
+    padding: 12px;
+    border-radius: 0 10px 10px 0;
+    background: rgba(172, 47, 7, 1);
+    color: #fffd;
+    cursor: pointer;
+
+}
+
+#show-passwd{
+    background: none;
+    position: absolute;
+    left: 240px;
+    top: 2px;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+#show-passwd img {
+    width: 25px;
+    height: 25px;
+}
+
+.email label input {
+    width: 427px;
+}
+
+
+.form_each_line {
+    display: block;
+    width: 300px;
+    margin-bottom: 16px;
+}
+
+.form_each_line:last-child {
+    margin-bottom: 0;
+}
+
+input[type=text], select {
+    width: 341px;
+    box-sizing: border-box;
+    background: #FFF;
+    border-radius: 10px;
+    padding: 10px 10px 10px 13px;
+    margin-top: 5px;
+    border: 1px solid #000000;
+}
+
+.form_each_line select{
+    width: 341px;
+}
+
+.form_each_line #today{
+    width: 341px;
+}
+
+.city {
+    margin: 0 20px 0 0;
+}
+.city select {
+    width: 160px;
+}
+
+.country select {
+    width: 160px;
+}
+
+#country-city {
+    display: flex;
+}
+
+input[type=tel]{
+    width: 338px;
+}
+
+.additional-info h3 {
+    margin-top: 60px;
+    width: 377px;
+}
+
+.password_info p {
+    color: #5f5d5d;
+    text-align-last: left;
+    margin-left: 90px;
+    margin-bottom: 8px;
+}
+.password_info ul {
+    color: #5f5d5d;
+    text-align-last: left;
+    margin-left: 110px;
+    margin-bottom: 20px;
+}
+
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+}

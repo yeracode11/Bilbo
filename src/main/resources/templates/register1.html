@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://creativereview.imgix.net/content/uploads/2021/04/A20024.02-BBC1-Dracula-Special-Build-scaled.jpg?auto=compress,format&q=60&w=1512&h=1080');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+
+
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            color: #0E0B85;
+        }
+
+        div, p, input, header, a, form {
+            box-sizing: border-box;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .logIn {
+            padding: 1px 0 47px;
+        }
+
+        .logIn_text h1 span {
+            color: #0E0B85;
+            margin: 0;
+        }
+
+        .logIn_text h1 {
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+
+
+        .logIn_items img {
+            width: 100%;
+        }
+
+        .logIn_text {
+            width: 40%;
+            background-color: #D9D9D9;
+            text-align: center;
+            padding: 50px 0 60px;
+            border-radius: 8px;
+            margin: 0 auto;
+            opacity: 90%;
+        }
+
+        .logIn_text p{
+            width: 90%;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+
+        .login-form {
+            padding: 200px 0;
+            text-align: center;
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            text-align: left;
+        }
+
+        .labelName {
+            color: #0E0B85CC;
+            margin-left: 5.8rem;
+            /* margin-bottom: 10px; */
+        }
+
+        .info input {
+            display: block;
+            margin: 0 auto;
+            background: #fff;
+            /* border: 2px solid rgba(0, 0, 0, 0.31); */
+            border: none;
+            border-radius: 8px;
+            width: 80%;
+            padding: 18px 27px;
+            font-size: 14px;
+            margin-bottom: 18px;
+            margin-top: 5px;
+        }
+
+        .info input:nth-child(4n) {
+            margin-bottom: 20px;
+        }
+
+
+        .info input:focus {
+            background: #FFFCDE;
+        }
+
+        button {
+            border:none;
+            border-radius: 10px;
+            background-color: #0E0B85;
+            width: 200px;
+            padding: 15px 0;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            color: #fff;
+            display: block;
+            cursor: pointer;
+        }
+
+        .add-info a{
+            text-decoration: none;
+            color: #000;
+            margin-right: 0;
+
+        }
+
+
+        .add-info span {
+            color: #0E0B85;
+            text-decoration: none;
+        }
+
+        /* .inputs {
+            display: flex;
+        } */
+
+        .password_info p {
+            color: #5f5d5d;
+            text-align-last: left;
+            margin-left: 90px;
+            margin-bottom: 8px;
+        }
+        .password_info ul {
+            color: #5f5d5d;
+            text-align-last: left;
+            margin-left: 110px;
+            margin-bottom: 20px;
+        }
+
+        #message {
+            display:none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+        .valid:before {
+            position: relative;
+            left: -35px;
+        }
+
+        /* Add a red text color and an "x" when the requirements are wrong */
+        .invalid {
+            color: red;
+        }
+
+        .invalid:before {
+            position: relative;
+            left: -35px;
+        }
+    </style>
+    <title>Registration</title>
+</head>
+<body>
+<div class="logIn">
+    <div class="logIn_items">
+        <img src="../static/img/logIn_banner.png" alt="">
+        <div class="logIn_text">
+            <h1><span>Happy</span> Clients!</h1>
+            <form th:action="@{'/auth/register'}" method="post">
+                <div class="inputs">
+                    <div class="info">
+                        <!-- <label for="" class="labelName">First name</label> -->
+                        <input type="text" name="name" placeholder="First name" required>
+                        <!-- <label for="" class="labelName">Last Name</label> -->
+                        <input type="text" name="surname" placeholder="Last Name" required>
+                        <!-- <label for="" class="labelName">Email</label> -->
+                        <input type="email" name="reg_email" placeholder="Email" required>
+                        <!-- <label for="" class="labelName">Password</label> -->
+                        <input type="password" id="psw" name="reg_password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8" required>
+                        <!-- <label for="" class="labelName">Repeat password</label> -->
+                        <input type="password" id="psw" name="reg_confPassword" placeholder="Repeat password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8"
+                               required>
+                    </div>
+                    <div class="password_info">
+                        <p>Password must contain the following:</p>
+                        <ul>
+                            <li id="letter" class="invalid">A <b>lowercase</b> letter</li>
+                            <li id="capital" class="invalid">A <b>capital (uppercase)</b> letter</li>
+                            <li id="number" class="invalid">A <b>number</b></li>
+                            <li id="length" class="invalid">Minimum <b>8 characters</b></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="btn">
+                    <button type="submit" id="btn">Sign up</button>
+                </div>
+            </form>
+            <div class="add-info">
+                <a th:href="@{'/auth/'}">Already have an account? <span>Log in.</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var myInput = document.getElementById("psw");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+    // When the user clicks on the password field, show the message box
+    myInput.onfocus = function() {
+        document.getElementById("message").style.display = "block";
+    }
+
+    // When the user clicks outside of the password field, hide the message box
+    myInput.onblur = function() {
+        document.getElementById("message").style.display = "none";
+    }
+
+    // When the user starts to type something inside the password field
+    myInput.onkeyup = function() {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if(myInput.value.match(lowerCaseLetters)) {
+            letter.classList.remove("invalid");
+            letter.classList.add("valid");
+        } else {
+            letter.classList.remove("valid");
+            letter.classList.add("invalid");
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if(myInput.value.match(upperCaseLetters)) {
+            capital.classList.remove("invalid");
+            capital.classList.add("valid");
+        } else {
+            capital.classList.remove("valid");
+            capital.classList.add("invalid");
+        }
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if(myInput.value.match(numbers)) {
+            number.classList.remove("invalid");
+            number.classList.add("valid");
+        } else {
+            number.classList.remove("valid");
+            number.classList.add("invalid");
+        }
+
+        // Validate length
+        if(myInput.value.length >= 8) {
+            length.classList.remove("invalid");
+            length.classList.add("valid");
+        } else {
+            length.classList.remove("valid");
+            length.classList.add("invalid");
+        }
+    }
+</script>
+</body>
+</html>

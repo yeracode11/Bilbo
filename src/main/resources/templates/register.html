@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{'/css/register.css'}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Wellfleet&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Registration</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logIn">
+        <div class="logIn_items">
+          <!-- <img src="register_background.svg" alt="" /> -->
+          <div class="logIn_text">
+            <h1><span>Happy</span> Client</h1>
+            <form
+              th:action="@{'/auth/register'}"
+              method="post"
+              class="register_form"
+            >
+              <div class="inputs">
+                <div class="info">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="First name"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="surname"
+                    placeholder="Last Name"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="reg_email"
+                    placeholder="Email"
+                    required
+                  />
+                  <input
+                    type="password"
+                    id="psw"
+                    name="reg_password"
+                    placeholder="Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    minlength="8"
+                    required
+                  />
+                  <input
+                    type="password"
+                    id="psw"
+                    name="reg_confPassword"
+                    placeholder="Repeat password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    minlength="8"
+                    required
+                  />
+                </div>
+                <!-- <div class="password_info">
+                <p>Password must contain the following:</p>
+                <ul>
+                  <li id="letter" class="invalid">A <b>lowercase</b> letter</li>
+                  <li id="capital" class="invalid">
+                    A <b>capital (uppercase)</b> letter
+                  </li>
+                  <li id="number" class="invalid">A <b>number</b></li>
+                  <li id="length" class="invalid">
+                    Minimum <b>8 characters</b>
+                  </li>
+                </ul>
+              </div> -->
+              </div>
+              <div class="btn">
+                <button type="submit" id="btn">Sign up</button>
+              </div>
+            </form>
+            <div class="add-info">
+              <a th:href="@{'/auth/'}"
+                >already have an account? <span>Log in.</span></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var myInput = document.getElementById("psw");
+      var letter = document.getElementById("letter");
+      var capital = document.getElementById("capital");
+      var number = document.getElementById("number");
+      var length = document.getElementById("length");
+
+      // When the user clicks on the password field, show the message box
+      myInput.onfocus = function () {
+        document.getElementById("message").style.display = "block";
+      };
+
+      // When the user clicks outside of the password field, hide the message box
+      myInput.onblur = function () {
+        document.getElementById("message").style.display = "none";
+      };
+
+      // When the user starts to type something inside the password field
+      myInput.onkeyup = function () {
+        // Validate lowercase letters
+        var lowerCaseLetters = /[a-z]/g;
+        if (myInput.value.match(lowerCaseLetters)) {
+          letter.classList.remove("invalid");
+          letter.classList.add("valid");
+        } else {
+          letter.classList.remove("valid");
+          letter.classList.add("invalid");
+        }
+
+        // Validate capital letters
+        var upperCaseLetters = /[A-Z]/g;
+        if (myInput.value.match(upperCaseLetters)) {
+          capital.classList.remove("invalid");
+          capital.classList.add("valid");
+        } else {
+          capital.classList.remove("valid");
+          capital.classList.add("invalid");
+        }
+
+        // Validate numbers
+        var numbers = /[0-9]/g;
+        if (myInput.value.match(numbers)) {
+          number.classList.remove("invalid");
+          number.classList.add("valid");
+        } else {
+          number.classList.remove("valid");
+          number.classList.add("invalid");
+        }
+
+        // Validate length
+        if (myInput.value.length >= 8) {
+          length.classList.remove("invalid");
+          length.classList.add("valid");
+        } else {
+          length.classList.remove("valid");
+          length.classList.add("invalid");
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="text/javascript" src="/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="/src/main/resources/static/css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+  <style>
+    body{
+      background-color: #F3F6FF;
+    }
+
+
+    .billboards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 -10px;
+    }
+
+    .billboard-card {
+      width: calc(33.333% - 20px);
+      background-color: #fff;
+      border-radius: 2%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-btn {
+      border-radius: 5px;
+      text-align: center;
+      border: none;
+      /* color: #000; */
+      font-weight: bold;
+      background: #fff;
+      width: 130px;
+      padding: 5px 0;
+      display: block;
+      margin-left: 250px;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    .billboard-card img {
+      margin-top: 40px;
+      width: 90%;
+      height: auto;
+      border-radius: 2%;
+    }
+
+    .billboard-info {
+      padding: 15px;
+      padding-left: 13px;
+      /* margin-right: 4px; */
+    }
+
+    .billboard-info h3 {
+      margin-top: 0;
+      margin-bottom: 5px;
+      color: white;
+      text-wrap: wrap;
+    }
+
+    .billboard-info p {
+      margin: 0;
+      font-size: 14px;
+      color: white;
+    }
+
+    .billboard-info span {
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    body{
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      color: #000;
+    }
+
+    div, p, input, header, a, form {
+      box-sizing: border-box;
+    }
+
+    ul, li {
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+
+    .sidebar {
+      /* background-color: rgba(255, 250, 233, 1); */
+
+      position: fixed;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      /* margin: 40px 20px; */
+      /* padding: 30px 10px; */
+      margin-top: 0px;
+      z-index: 1;
+    }
+
+    .sidebar_items {
+      /* width: 95%; */
+      align-items: center;
+      background-color: #fff;
+      padding: 20px 100px;
+      border-radius: 20px;
+    }
+
+    .sidebar_items h2{
+      /*margin-right: 70px;*/
+      color: #000;
+      width: 290px;
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .sidebar_items h2 span {
+      color: #4D49FF;
+    }
+
+    .sidebar_nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+
+    .homePage{
+      display: flex;
+      margin-top: 10px;
+      margin-right: 3rem;
+    }
+
+    .enter {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .img2 {
+      width: 60px;
+      height: 60px;
+    }
+
+    .sub-menu {
+      background: #fff;
+      padding: 20px;
+      margin: 10px;
+    }
+
+    .uer-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .uer-info h3 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .uer-info img {
+      border-radius: 50%;
+      margin-right: 15px;
+    }
+
+    .sub-menu hr {
+      border: 0;
+      height: 1px;
+      width: 100%;
+      background: #ccc;
+      margin: 15px 0 10px;
+    }
+
+    .sub-menu-wrap {
+      position: absolute;
+      top: 85%;
+      right: 5%;
+      width: 260px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s;
+    }
+
+    .sub-menu-wrap.open-menu {
+      max-height: 400px;
+    }
+
+    .sub-menu-link {
+      display: flex;
+      align-items: center;
+      color: #525252;
+      margin: 12px 0;
+    }
+
+    .sub-menu-link p {
+      width: 100%;
+      font-size: 16px;
+    }
+
+    .sub-menu-link i {
+      margin-right: 10px;
+      width: 18px;
+      background: #e5e5e5;
+      border-radius: 50%;
+      padding: 8px;
+    }
+
+    .sub-menu-link span {
+      font-size: 22px;
+      transition: transform 0.5s;
+
+    }
+
+    .sub-menu-link:hover span{
+      transform: translateX(5px);
+    }
+
+    .sub-menu-link:hover p {
+      font-weight: 600;
+    }
+
+    .nav {
+      display: flex;
+    }
+
+    .nav li {
+      margin-right: 35px;
+      font-weight: 600;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+
+
+    .nav li a {
+      color: #000;
+      margin-left: 100px;
+    }
+
+
+    .nav li:nth-child(4n) {
+      margin-right: 0;
+    }
+
+
+    .shops {
+      display: flex;
+      align-items: center;
+    }
+
+    .shops a {
+      color: #000;
+      font-size: 16px;
+      margin-right: 10px;
+      font-weight: 500;
+    }
+
+    .cart a {
+      font-weight: bold;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    header {
+      /* padding: 90px 0 20px; */
+      /* background: url(../img/imgBackground.png) 0 0 no-repeat;
+      background-size: 100%; */
+    }
+
+    .text_banner {
+      padding: 144px 0 197px;
+    }
+
+
+    .text_banner button{
+      width: 280px;
+      padding: 20px;
+      font-weight: bold;
+      background-color: #4D49FF;
+      border: none;
+      font-weight: bold;
+      color: #fff;
+      font-size: 18px;
+      border-radius: 8px;
+    }
+
+    .text_banner h2 {
+      font-size: 34px;
+      width: 358px;
+      margin-bottom: 30px;
+      color: #00145B;
+    }
+    .items {
+      padding: 40px 20px;
+      /* margin-top: 40vh; */
+    }
+
+    .items h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 80px;
+    }
+
+    .cards {
+      display: flex;
+      flex-direction: row; /* or column for vertical layout */
+      flex-wrap: wrap;
+      position: relative;
+      justify-content: center;
+    }
+
+
+    .cards .slick-track {
+      display: flex;
+    }
+
+    .cards .slick-list {
+      overflow: hidden;
+    }
+
+    .slick-arrow {
+      position: absolute;
+      margin: -25px 0 0 0;
+      top: 20%;
+      font-size: 0;
+      width: 40px;
+      height: 50px;
+      border: none;
+    }
+
+    .cards .slick-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cards .slick-dots li {
+      margin-right: 10px;
+    }
+
+    .cards .slick-dots li:nth-child(9n) {
+      margin-right: 0;
+    }
+    .cards .slick-dots button {
+      font-size: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #4D49FF;
+      cursor: pointer;
+      border: none;
+    }
+
+    .slick-dots .slick-active button {
+      background-color: #0E0B85;
+      width: 17px;
+      height: 17px;
+    }
+
+    .cards_item{
+      width: 361px;
+      background: #6189b0;
+      padding: 30px 30px 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-bottom: 20px;
+      transform: scale(0.93);
+    }
+
+    .cards .slick-center {
+      background-color:  #0E0B85;
+      transform: scale(1);
+      transition: 1s ease;
+    }
+
+    .cards .slick-center .banner_btn a:hover{
+      background-color: #6189b0;
+    }
+
+
+    .img_banner {
+      margin: 0 auto;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .img_banner a{
+      font-size: 13px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 10px;
+      background: red;
+      width: 70px;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+    .img_banner p {
+      position: absolute;
+      top: 0;
+      font-size: 13px;
+      background: #fff;
+      text-align: center;
+      width: 160px;
+      border-radius: 3px;
+      margin: 160px 0 10px 10px;
+      font-weight: bold;
+    }
+
+    .img_banner img {
+      height: 196px;
+      width: 300px;
+      border-radius: 5px;
+    }
+
+    .banner_detail {
+      font-size: 14px;
+      width: 300px;
+      color: #fff;
+    }
+
+    .banner_textD {
+      margin-bottom: 20px;
+    }
+
+    .banner_textD p{
+      color: #fff;
+      font-size: 17px;
+    }
+
+    .banner_textD h3 {
+      color: #fff;
+      margin-bottom: 30px;
+      width: 280px;
+      font-size: 20px
+    }
+
+    /* .banner_btn {
+        text-align: end;
+    } */
+
+    .banner_btn {
+      width: 130px;
+      margin: 0 auto 0 170px;
+    }
+    .banner_btn a{
+      border-radius: 3px;
+      text-align: center;
+      color: #000;
+      font-weight: bold;
+      background: #fff;
+      width: 130px;
+      padding: 5px 0;
+      display: block;
+
+    }
+
+    .banner_btn a:hover{
+      background: #0E0B85;
+      color: #fff;
+      transition: 0.6s ease;
+    }
+
+
+    .more_bilboards {
+      text-align: center;
+    }
+
+    .more_bilboards a {
+      display: block;
+      color: #fff;
+      background: #0E0B85;
+      width: 170px;
+      text-align: center;
+      padding: 13px 0;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      margin: 25px auto;
+    }
+
+    .about_com {
+      /* padding: 60px 20px 100px; */
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .about_items {
+      /* width: 90%; */
+      display: flex;
+      /* justify-content: center; */
+      /* margin: 0 100px; */
+      padding: 60px 10%;
+      border-radius: 2%;
+      background: #f08557;
+    }
+
+
+    .text_about {
+      width: 470px;
+      margin-right: 20px;
+    }
+
+    .text_about h1 {
+      font-size: 30px;
+      width: 450px;
+      margin-bottom: 10px;
+      color: #fff;
+      padding-top: 0;
+    }
+
+    .text_about p {
+      font-size: 18px;
+      margin: 0 0 20px;
+      width: 450px;
+      color: #fff;
+    }
+
+    .text_about p span {
+      font-weight: bold;
+    }
+
+    .grid_img  img{
+      max-width: 260px;
+      height: auto;
+      vertical-align: middle;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    .grid_img  img:nth-child(1){
+      max-width: 260px;
+      height: 320px;
+      vertical-align: middle;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+    .grid_img > div {
+      /* justify-content: center;
+      /* align-items: center; */
+    }
+
+    .grid > div > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .grid_img {
+      /* display: grid; */
+      /* grid-gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(50px,1fr));
+      grid-auto-rows: 100px;
+      grid-auto-flow: dense;
+      margin-left: 20px; */
+      display: flex;
+      gap: 10px;
+      /* height: 100px; */
+    }
+
+    .group1_grid img {
+      margin-bottom: 10px;
+    }
+    .group1_grid img:nth-child(1) {
+      height: 110px;
+    }
+    .group1_grid img:nth-child(2) {
+      height: 200px;
+      width: 165px;
+    }
+
+    .group1_grid img:nth-child(2n) {
+      margin-bottom: 0;
+    }
+
+
+    .phone_section {
+      /* padding: 80px 0 60px; */
+      padding-top: 80px;
+      padding-bottom: 60px;
+      width: 100%;
+    }
+
+    .contact_us {
+      background-color: #FFF;
+      width: 431px;
+      padding: 40px 30px;
+      border-radius: 10px;
+      border: 2px solid #0E0B85;
+      margin-right: 40px;
+    }
+
+    .contact_us h2{
+      font-size: 35px;
+      text-align: center;
+      margin-bottom: 10px;
+      margin-bottom: 5px;
+    }
+
+    .info {
+      display: block;
+      text-align: center;
+    }
+
+    textarea {
+      font-size: 18px;
+      padding: 20px;
+      width: 326px;
+      border-radius: 10px;
+      height: 120px;
+      background-color: #FFFCDE;
+      margin-bottom: 30px;
+    }
+
+    .info input {
+      display: block;
+      background: #FFFCDE;
+      border: 2px solid rgba(0, 0, 0, 0.31);
+      border-radius: 10px;
+      width: 368px;
+      padding: 12px 15px;
+      font-size: 19px;
+      margin: 0 auto 10px;
+
+    }
+
+    .info input:nth-child(2n){
+      margin-bottom: 20px;
+    }
+
+    .info input:focus {
+      background: #FFF;
+    }
+
+    .info textarea:focus{
+      background-color: #FFF;
+    }
+
+    .btn {
+      text-align: center;
+    }
+
+
+    .btn button{
+      background: #0E0B85;
+      width: 200px;
+      padding: 13px 0;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: #FFF;
+    }
+
+    .contact_us hr {
+      width: 242px;
+      display: block;
+      margin: 0 auto 25px auto;
+    }
+
+    .phone_details {
+      display: flex;
+      justify-content: center;
+      /* width: 87%; */
+      margin: 0 auto;
+    }
+
+    .contact_us hr {
+      color: #0E0B85;
+    }
+
+    .geo {
+      background-color: #FFF;
+      width: 573px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      border: 2px solid #0E0B85;
+      justify-content: space-between;
+      padding: 10px 30px;
+      margin: 0px 0 22px 0;
+    }
+
+    .map_items p {
+      width: 220px;
+      font-size: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .map_items .mail p:nth-child(1n) {
+      margin-bottom: 0;
+    }
+
+    .geo h2 {
+      font-size: 30px;
+      width: 190px;
+      margin: 0 20px 0 0;
+    }
+
+    .geo h2 span {
+      color:#0E0B85;
+    }
+
+    .geo img {
+      width: 135px;
+    }
+
+    .phone {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .phone i {
+      margin-right: 5px;
+    }
+
+    .mail {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .mail i {
+      margin-right: 5px;
+    }
+
+    .mail li {
+      margin-right: 5px;
+    }
+
+    .map_photo img {
+      width: 573px;
+      border-radius: 8px;
+    }
+
+    .footer {
+      padding: 40px 0 20px;
+      background-color: #00145B;
+    }
+
+    .social {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .social a {
+      display: block;
+      margin-right: 15px;
+    }
+
+    .social a:nth-child(4n) {
+      margin-right: 0;
+    }
+
+    .footer_words {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .footer_words hr {
+      width: 16%;
+      height: 3px;
+      background-color: #fff;
+      border: none;
+    }
+
+    .copyright {
+      text-align: center;
+      color: #fff;
+      font-weight: 100;
+    }
+
+    h1.all_Billboards {
+      text-align: left !important;
+      margin-left: 10px;
+    }
+
+    .billboard-container {
+      margin-top: 100px;
+      margin: 8%;
+    }
+
+    .underline {
+      text-decoration: underline;
+    }
+
+  </style>
+  <title>Happy Clients</title>
+</head>
+<body>
+<header class="sidebar">
+  <div class="container">
+    <div class="sidebar_items">
+
+      <div class="sidebar_nav">
+        <ul class="nav">
+          <a href="/"><h2><span>Happy</span> Clients</h2></a>
+          <div class="homePage">
+            <li>
+              <a href="#cards" class="myLink">
+                All Billboards
+              </a>
+            </li>
+
+            <li>
+              <a th:href="@{'/basket/'}" class="myLink">
+                Orders
+              </a>
+            </li>
+            <li>
+              <a href="#about_com" class="myLink">
+                About us
+              </a>
+            </li>
+            <li>
+              <a href="#contact_us" class="myLink">
+                Contact us
+              </a>
+            </li>
+          </div>
+        </ul>
+        <div class="shops">
+          <div class="enter">
+            <img  style="height: 40px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="user-pic" onclick="toggleMenu()">
+          </div>
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+              <div class="uer-info">
+                <img style="height: 40px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="img2">
+                <h3 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></h3>
+              </div>
+              <hr>
+              <a th:href="@{'/admin/main/'}" class="sub-menu-link" sec:authorize="hasAuthority('MANAGER')">
+                <i class="fa-solid fa-user"></i>
+                <p>Admin page</p>
+                <span>></span>
+              </a>
+              <a th:href="@{'/editOrViewProfile/'}" class="sub-menu-link">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <p>Edit profile</p>
+                <span>></span>
+              </a>
+              <a class="sub-menu-link" href="JavaScript:void(0)"
+                 onclick="singOutForm.submit()">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>Log out</p>
+                <form th:action="@{'/signOut'}" method="post" id="singOutForm"></form>
+                <span>></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="items" id="cards">
+  <div class="container">
+    <h1>All Billboards</h1>
+    <div class="cards">
+      <div class="cards_item" th:each="billboard : ${billboards}">
+        <div class="img_banner">
+          <img  th:src="@{'/admin/getAva/' + ${billboard.billboard_url}}" id="addImg" alt="">
+          <!--          <img th:src="@{'/admin/getAva/' + ${billboard.billboard_url}}" alt="#">-->
+          <a href="#">Featured</a>
+          <p th:text="'Per month ' + ${billboard.price} + '$'"></p>
+        </div>
+        <div class="banner_detail">
+          <div class="banner_textD">
+            <h3 th:text="${locations[billboard.location_id].name}"></h3>
+            <p th:text="'City: '+ ${cities[billboard.city_id].name}"></p>
+            <p th:text="'Type: '+ ${billboard.type}"></p>
+            <p th:text="'Size: '+ ${billboard.size}"></p>
+          </div>
+          <div class="banner_btn">
+            <a th:href="@{'/detailBillboard/'+${billboard.id}}">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</section>
+<section class="about_com" id="about_com">
+  <div class="container">
+    <div class="about_items">
+      <div class="text_about">
+        <h1>About us</h1>
+        <p> <span>We</span> have been helping businesses across the country get their message out to the world. With a focus on quality, affordability, and exceptional customer service, we've built a reputation as a leader in the billboard industry.</p>
+        <p>We believe that outdoor advertising should be accessible to businesses of all sizes. That's why we offer flexible pricing and financing options, as well as a wide range of design services to help bring your vision to life.</P>
+      </div>
+      <div class="grid_img">
+        <img src="https://www.azaleaoutdoor.com/wp-content/uploads/2022/03/Azalea_Header04-2496x1397.jpg" alt="#">
+        <div class="group1_grid">
+          <img src="https://www.junglecommunications.com/wp-content/uploads/Everything_BILLBOARD-NEW_767x300.jpg" alt="#">
+          <img src="https://www.gingermediagroup.com/wp-content/uploads/2023/09/various-digital-billboards-on-a-street-1024x576.jpg" alt="#">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="phone_section" id="contact_us">
+  <div class="container">
+    <div class="phone_details">
+      <div class="contact_us">
+        <h2>Contact Us</h2>
+        <hr>
+        <div class="info">
+          <input type="email" placeholder="Full Name" required= "required">
+          <input type="password" placeholder="E-mail" minlength="8" required= "required">
+        </div>
+        <div class="message">
+          <textarea  placeholder="Message..."></textarea>
+        </div>
+        <div class="btn">
+          <button type="button">Send</button>
+        </div>
+      </div>
+      <div class="map_address">
+        <div class="geo">
+          <h2><span>Happy</span> Clients</h2>
+          <div class="map_info">
+            <div class="map_items">
+              <p>Kazakhstan, Almaty 322a, Zharokov street</p>
+              <p>050000</p>
+              <div class="phone">
+                <i class="fa-solid fa-phone"></i>
+                <p>+7(777)7777777</p>
+              </div>
+              <div class="mail">
+                <i class="fa-sharp fa-solid fa-envelope"></i>
+                <p>happyclients@gmail.com</p>
+              </div>
+            </div>
+          </div>
+          <img src="/img/geo.svg" alt="">
+        </div>
+        <div class="map_photo">
+          <img src="/img/map.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/js/slick.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script>
+  let subMenu = document.getElementById("subMenu");
+
+  function toggleMenu(){
+    subMenu.classList.toggle("open-menu");
+
+  }
+
+  document.addEventListener('DOMContentLoaded', (event) => {
+    //                               'myLink'
+    var links = document.querySelectorAll('.myLink');
+
+    //
+    var removeUnderline = function() {
+      links.forEach(function(link) {
+        link.classList.remove('underline');
+      });
+    };
+
+    //
+    links.forEach(function(link) {
+      link.addEventListener('click', function() {
+        removeUnderline(); //
+        link.classList.add('underline'); //
+      });
+    });
+  });
+</script>
+</body>

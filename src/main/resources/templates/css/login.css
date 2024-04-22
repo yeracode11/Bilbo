@@ -1,0 +1,146 @@
+body{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: url(/static/img/register-ban.jpg) 0 0 no-repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: #0E0B85;
+}
+
+div, p, input, header, a, form {
+  box-sizing: border-box;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  opacity: 80%;
+}
+
+.logIn {
+  padding: 150px 0;
+}
+
+
+.logIn_text h1 span {
+  color: #0E0B85;
+  margin: 0;
+}
+
+.logIn_text h1 {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.logIn_items {
+  display: flex;
+}
+
+.logIn_items img {
+  width: 100%;
+}
+
+.logIn_text {
+  width: 480px;
+  background-color: #D9D9D9;
+  text-align: center;
+  padding: 50px 0 60px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.logIn_text p{
+  width: 81%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  padding: 200px 0;
+  text-align: center;
+}
+
+.info {
+  display: block;
+}
+
+.info input {
+  display: block;
+  margin: 0 auto;
+  background: #fff;
+  border: 2px solid rgba(0, 0, 0, 0.31);
+  border-radius: 8px;
+  width: 280px;
+  padding: 15px 27px;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.info input:nth-child(2n) {
+  margin-bottom: 30px;
+}
+
+
+.info input:focus {
+  background: #FFFCDE;
+}
+
+button {
+  border:none;
+  border-radius: 10px;
+  background-color: #0E0B85;
+  width: 200px;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 auto 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.register a{
+  color: #000;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.register {
+  text-align: center;
+}
+
+.register a:nth-child(2n) {
+  margin-right: 0;
+}
+
+.wrong_password {
+  color: red;
+  font-size: 13px;
+  width: 275px;
+  display: block;
+  margin: 0 auto;
+}
+
+.wrong_password p {
+  width: 275px;
+}

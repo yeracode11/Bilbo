@@ -1,0 +1,791 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 250, 233, 1);
+    position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #000;
+}
+
+div, p, input, header, a, form {
+    box-sizing: border-box;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    padding: 20px 0 40px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.shops {
+    display: flex;
+    align-items: center;
+}
+
+.enter {
+    margin-right: 15px;
+}
+
+.nav h1 {
+    color: #AC2F07;
+    width: 10%;
+    text-align: center;
+}
+
+.cart {
+    font-weight: 800;
+}
+
+.sub-menu {
+    background: #fff;
+    padding: 20px;
+    margin: 10px;
+}
+
+.uer-info {
+    display: flex;
+    align-items: center;
+}
+
+.uer-info h3 {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.uer-info img {
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sub-menu hr {
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10px;
+}
+
+.sub-menu-wrap {
+    position: absolute;
+    top: 84%;
+    right: -8px;
+    width: 260px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu {
+    max-height: 400px;
+}
+
+.sub-menu-link {
+    display: flex;
+    align-items: center;
+    color: #525252;
+    margin: 12px 0;
+}
+
+.sub-menu-link p {
+    width: 100%;
+    font-size: 16px;
+}
+
+.sub-menu-link i {
+    margin-right: 10px;
+    width: 18px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.sub-menu-link span {
+    font-size: 22px;
+    transition: transform 0.5s;
+
+}
+
+.sub-menu-link:hover span{
+    transform: translateX(5px);
+}
+
+.sub-menu-link:hover p {
+    font-weight: 600;
+}
+
+
+.sidebar_items {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    justify-content: space-between;
+}
+
+
+.sidebar_items h2{
+    margin-right: 70px;
+    color: #000;
+    width: 290px;
+    font-size: 30px;
+}
+
+.sidebar_items h2 span {
+    color: #F4624B;
+}
+
+
+.bilbo {
+    background: #FFF;
+    padding: 20px 0;
+    border-radius: 30px 0px 0px 30px;
+    margin-left: 12px;
+    width: 308px;
+}
+
+.mapBilbo{
+    display: block;
+    width: 323px;
+    padding-bottom: 20px;
+    margin-right: 20px;
+}
+
+.bilbo a {
+    color: #A52800;
+    margin-left: 60px;
+}
+
+.bilbo_cards {
+    display: flex;
+}
+
+.cards {
+    display: block;
+}
+.cards_item {
+    display: flex;
+    width: 100%;
+    padding: 30px 50px;
+    margin-bottom: 20px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 11px;
+    justify-content: space-between;
+}
+
+.image {
+    width: 320px;
+}
+
+.image img {
+    width: 100%;
+    height: 268px;
+    border-radius: 10px;
+}
+
+.text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.text_item:last-child {
+    margin-bottom: 20px;
+}
+
+.text_item h3 {
+    width:  120px;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.text_item h3:nth-child(6n) {
+    margin-bottom: 0;
+}
+.text_item p {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.text_item p:nth-child(6n) {
+    margin-bottom: 0;
+}
+
+.id {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.id h3 {
+    margin-right: 10px;
+}
+
+
+.order_circles button {
+    width: 40px;
+    height: 40px;
+    font-weight: 800;
+    border-radius: 100%;
+    border: none;
+}
+
+
+.order_first button {
+    margin-right: 3px;
+    margin-bottom: 10px;
+    background: #4BD4FF;
+}
+
+.order_first button:nth-child(6n) {
+    margin-right: 0;
+}
+
+.order_second button {
+    margin-right: 3px;
+    background: #FF5959;
+}
+
+.order_second button:nth-child(6n) {
+    margin-right: 0;
+}
+
+.order_second {
+    margin-bottom: 23px;
+}
+.btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.btn .detail button{
+    width: 150px;
+    padding: 6px;
+    border-radius: 10px;
+    background: #A52800;
+    color: #FFF;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.btn .delete button {
+    width: 100px;
+    padding: 6px;
+    border-radius: 10px;
+    background: #525252;
+    color: #FFF;
+    cursor: pointer;
+}
+
+.boxed {
+    display: flex;
+}
+
+
+.btn_link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+
+.link a {
+    font-weight: 400;
+}
+
+.link a:last-child{
+    font-weight: 600;
+}
+
+#justText{
+    margin-bottom: 10px;
+}
+
+.toBasket{
+    display: block;
+    background: #AC2F07;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    color: #fff;
+    padding: 10px;
+    width: 175px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: none;
+}
+
+
+.calendar-container {
+    width: 400px;
+    margin: auto;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+}
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eee;
+    padding: 10px;
+}
+
+.days-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.day {
+    width: calc(100% / 7);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.booked {
+    background-color: #ffcccb;
+}
+
+.selected {
+    background-color: #4169e1;
+    color: #fff;
+}
+
+.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+
+#header {
+    color: #d36c6c;
+    font-size: 26px;
+    font-family: sans-serif;
+    text-align: end;
+}
+#header button {
+    background-color:#92a1d1;
+}
+#container {
+    width: 770px;
+}
+#weekdays {
+    width: 100%;
+    display: flex;
+    color: #247BA0;
+    justify-content: end;
+}
+#weekdays div {
+    width: 50px;
+    padding: 10px;
+}
+
+.calendar {
+    width: 50%;
+    display: block;
+}
+#calendar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: end;
+}
+.day {
+    width: 40px;
+    padding: 5px;
+    height: 40px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    margin: 5px;
+    box-shadow: 0px 0px 3px #CBD4C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.day:hover {
+    background-color: #e8faed;
+}
+
+.day + #currentDay {
+    background-color:#e8f4fa;
+}
+.event {
+    font-size: 10px;
+    padding: 3px;
+    background-color: #58bae4;
+    color: white;
+    border-radius: 5px;
+    max-height: 55px;
+    overflow: hidden;
+}
+.padding {
+    cursor: default !important;
+    background-color: #FFFCFF !important;
+    box-shadow: none !important;
+}
+#newEventModal, #deleteEventModal {
+    display: none;
+    z-index: 20;
+    padding: 50px 54px;
+    background-color: #FFF0DB;
+    box-shadow: 0px 0px 3px black;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 460px;
+    position: absolute;
+    font-family: sans-serif;
+    text-align: center;
+    margin: -88px auto;
+}
+/* #eventTitleInput {
+padding: 10px;
+width: 100%;
+box-sizing: border-box;
+margin-bottom: 25px;
+border-radius: 3px;
+outline: none;
+border: none;
+box-shadow: 0px 0px 3px gray;
+} */
+#eventTitleInput.error {
+    border: 2px solid red;
+}
+#cancelButton, #deleteButton {
+    background-color: #D70000;
+}
+#saveButton, #closeButton {
+    background-color: #4D49FF;
+}
+#eventText {
+    font-size: 14px;
+}
+#modalBackDrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.inputs {
+    display: block;
+    text-align: center;
+}
+
+#newEventModal h2 {
+    margin-bottom: 20px;
+}
+
+.inputs input{
+    width: 350px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.inputs input:nth-child(2n){
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    margin-right: 10px;
+    width: 115px;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.day + .pastDay {
+    color: white;
+    background-color: #525351;
+}
+
+
+.day + .pastDay:hover {
+    background-color: #525351;
+}
+
+.start p {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.end p {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.start input {
+    width: 350px;
+    padding: 15px 10px 15px 10px;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.end {
+    margin-bottom: 30px;
+}
+
+.end input {
+    width: 350px;
+    padding: 15px 10px 15px 10px;
+    border-radius: 10px;
+    border: none;
+    background: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.start {
+    margin-bottom: 15px;
+}
+
+.save-cancel button {
+    display: flex;
+    border: none;
+    width: 132px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    justify-content: center;
+    color: #ffff;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.green{
+    color: green;
+}
+
+.save-cancel button:nth-child(2){
+    margin-left: 15px;
+}
+
+.save-cancel {
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.tel input{
+    width: 350px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.tel {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.tel p{
+    font-size: 16px;
+    text-align: left;
+}
+
+.tel p:nth-child(2) {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/*Modal window*/
+#myModal {
+    width: 340px;
+    height: 230px;
+    padding: 52px 9px;
+    border-radius: 4px;
+    background: #FFFCDE;
+    font-size: 30px;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    margin: auto;
+    display: none;
+    opacity: 0;
+    z-index: 38;
+    text-align: center;
+}
+
+#myModal #myModal__close {
+    width: 21px; height: 21px;
+    position: absolute;
+    font-size: 29px;
+    top: 1px; right: 11px;
+    cursor: pointer;
+    display: block;
+}
+
+#myOverlay {
+    z-index: 37;
+    position: fixed;
+    background: rgba(0,0,0,.7);
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    cursor: pointer;
+    display: none;
+}
+
+#myModal h3 {
+    font-size: 22px;
+    padding-bottom: 26px;
+}
+
+#myModal button {
+    width: 130px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #A52800;
+    color: #FFF;
+    margin-right: 15px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#myModal button:nth-child(2n){
+    background: #6b6b6b;
+    margin-right: 0;
+}
+
+.modal_btn p{
+    font-size: 18px;
+}
+
+.countPeriods {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.info-month button {
+    width: 30px;
+    height: 30px;
+    border: 1px solid #000000;
+    margin-right: 10px;
+}
+
+.grey {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.grey button {
+    background: grey;
+}
+
+.blue {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.blue button {
+    background: #1d9243;
+}
+
+.red {
+    display: flex;
+    align-items: center;
+}
+
+.red button {
+    background: #d95914;
+}
+
+
+.date {
+    display: flex;
+    align-items: center;
+    background: #A52800;
+    margin-bottom: 10px;
+    width: 250px;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 0;
+    border-radius: 21px;
+    font-size: 15px;
+}
+
+.ordered-days h4 {
+    font-size: 17px;
+    margin-top: 18px;
+    margin-bottom: 10px;
+}
+
+.text-circles{
+    margin-right: 7px;
+}
+
+.ordered-days {
+    display: block;
+    margin-left: 34px;
+}

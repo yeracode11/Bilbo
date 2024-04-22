@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/main.js"></script>
+    <link rel="stylesheet" href="/css/detailEditing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <title>Details & Editing</title>
+    <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: ghostwhite;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            color: #000;
+        }
+
+        div, p, input, header, a, form {
+            box-sizing: border-box;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .sidebar {
+            background-color: ghostwhite;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .sidebar_items {
+            padding: 20px 0;
+            display: flex;
+            justify-content: end;
+            position: relative;
+        }
+
+        .sub-menu {
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .uer-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .uer-info h3 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .uer-info img {
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .sub-menu hr {
+            border: 0;
+            height: 1px;
+            width: 100%;
+            background: #ccc;
+            margin: 15px 0 10px;
+        }
+
+        .sub-menu-wrap {
+            position: absolute;
+            top: 88%;
+            right: -10px;
+            width: 260px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s;
+        }
+
+        .sub-menu-wrap.open-menu {
+            max-height: 400px;
+        }
+
+        .sub-menu-link {
+            display: flex;
+            align-items: center;
+            color: #525252;
+            margin: 12px 0;
+        }
+
+        .sub-menu-link p {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .sub-menu-link i {
+            margin-right: 10px;
+            width: 18px;
+            background: #e5e5e5;
+            border-radius: 50%;
+            padding: 8px;
+        }
+
+        .sub-menu-link span {
+            font-size: 22px;
+            transition: transform 0.5s;
+
+        }
+
+        .sub-menu-link:hover span{
+            transform: translateX(5px);
+        }
+
+        .sub-menu-link:hover p {
+            font-weight: 600;
+        }
+
+
+        .name p {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .name p:nth-child(2n) {
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .enter {
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .enter img {
+            margin-right: 10px;
+        }
+        .name {
+            display: block;
+        }
+
+        .left_menu {
+            position: fixed;
+            background: #0E0B85;
+            width: 320px;
+            height: 100%;
+            padding: 15px 0;
+        }
+
+        .left_menu_items h1, a{
+            color: #fff;
+        }
+
+        .left_menu_items h1 {
+            font-size: 35px;
+            width: 235px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 90px;
+        }
+
+        .list {
+            display: block;
+            text-align: left;
+        }
+
+        .list a {
+            font-size: 20px;
+            margin-left: 74px;
+            font-size: 800;
+        }
+
+        .list li {
+            margin-bottom: 30px;
+        }
+
+        .list ul {
+            padding-left: 20px;
+        }
+
+        .bilbo {
+            background: #FFF;
+            padding: 20px 0;
+            border-radius: 30px 0px 0px 30px;
+            margin-left: 12px;
+            width: 308px;
+        }
+
+        .bilbo a {
+            color: #0E0B85;
+            margin-left: 60px;
+        }
+
+        .nav {
+            margin-bottom: 30px;
+        }
+
+        .nav a {
+            font-weight: 400;
+            font-size: 18px;
+            color: #000;
+        }
+
+        .nav a:nth-child(2n) {
+            font-weight: 600;
+        }
+
+        .all_edit {
+            margin-left: 250px;
+
+        }
+
+        .few_img {
+            display: flex;
+            width: 360px;
+        }
+
+
+        .first {
+            position: relative;
+            height: 250px;
+            place-items: center;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .first .image {
+            position: absolute;
+            border-radius: 10px;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .first .image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .first .icon {
+            font-size: 100px;
+            color: #0E0B85;
+        }
+
+        .first .text {
+            font-size: 20px;
+            color: #0E0B85;
+            font-weight: 500;
+        }
+
+
+        .first  #cancel_btn {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 15px;
+            cursor: pointer;
+            color: #0E0B85;
+            display: none;
+        }
+
+        .first.active:hover #cancel_btn {
+            display: block;
+        }
+
+        .first #cancel_btn:hover {
+            color:  #0E0B85;
+        }
+
+        .first #file_name {
+            position: absolute;
+            bottom: 0;
+            color: #FFF;
+            padding: 8px 0;
+            width: 100%;
+            font-size: 18px;
+            background: #0E0B85;
+            display: none;
+        }
+
+        .first.active:hover #file_name{
+            display: block;
+        }
+
+        .first.active {
+            border: none;
+        }
+
+        .edit_img #custom-btn {
+            margin-top: 30px;
+            width: 100%;
+            height: 50px;
+            display: block;
+            border: none;
+            background-color: #0E0B85;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            outline: none;
+        }
+
+
+        .edit_img #upd_btn {
+            margin-top: 10px;
+            width: 100%;
+            height: 50px;
+            display: block;
+            border: none;
+            background-color: #0E0B85;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .few_items {
+            margin-right: 10px;
+        }
+
+        .few_items img {
+            width: 140px;
+        }
+
+        .map{
+            width: 361px;
+        }
+        .few_items img {
+            margin-bottom: 10px;
+        }
+
+        .few_items img:nth-child(2n) {
+            margin-bottom: 0;
+        }
+
+        .form_each_line {
+            display: block;
+        }
+
+        .edit_item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .edit_img {
+            margin-right: 70px;
+            width: 350px;
+        }
+
+        .form_each_line {
+            margin-bottom: 10px;
+        }
+
+        input[type=text], select {
+            width: 100%;
+            padding: 14px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 8px;
+            border: none;
+            background: #FFF;
+        }
+
+
+        label {
+            font-size: 15px;
+        }
+
+
+        input[type=submit] {
+            width: 100%;
+            background-color: #D33232;
+            color: white;
+            padding: 10px 0;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .month {
+            text-align: center;
+        }
+
+        .month h3{
+            font-size: 18px;
+            color: #525252;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .month button {
+            width: 50px;
+            height: 50px;
+            font-weight: 800;
+            border-radius: 100%;
+            border: none;
+        }
+
+
+        .order_first button {
+            margin-right: 3px;
+            margin-bottom: 10px;
+            background: #4BD4FF;
+        }
+
+        .order_first button:nth-child(6n) {
+            margin-right: 0;
+        }
+
+        .order_second button {
+            margin-right: 3px;
+            background: #0E0B85;
+            margin-bottom: 10px;
+        }
+
+        .order_second button:nth-child(6n) {
+            margin-right: 0;
+        }
+
+
+        .order_third button {
+            margin-right: 3px;
+            margin-bottom: 10px;
+            background: #4BD4FF;
+        }
+
+        .order_third button:nth-child(6n) {
+            margin-right: 0;
+        }
+
+        .order_fourth button {
+            margin-right: 3px;
+            background: #0E0B85;
+        }
+
+        .order_fourth button:nth-child(6n) {
+            margin-right: 0;
+        }
+
+
+        .form_edit {
+            width: 360px;
+        }
+
+        button {
+            width: 46%;
+            background-color: #0E0B85;
+            color: white;
+            padding: 10px 0;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+
+        form  {
+            border: #000;
+        }
+
+
+        .detail_btn {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .detail_btn button:nth-child(2n) {
+            background-color: #b4b4b4;
+            color: #000;
+        }
+
+        #myModal {
+            width: 330px;
+            height: 208px;
+            padding: 45px 9px;
+            border-radius: 4px;
+            background: #FFFCDE;
+            font-size: 30px;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            margin: auto;
+            display: none;
+            opacity: 0;
+            z-index: 38;
+            text-align: center;
+        }
+
+        #myOverlay {
+            z-index: 37;
+            position: fixed;
+            background: rgba(0,0,0,.7);
+            width: 100%; height: 100%;
+            top: 0; left: 0;
+            cursor: pointer;
+            display: none;
+        }
+
+        #myModal h3 {
+            font-size: 22px;
+            padding-bottom: 40px;
+        }
+
+        #myModal button {
+            width: 130px;
+            padding: 17px;
+            border-radius: 10px;
+            background: #0E0B85;
+            color: #FFF;
+            margin-right: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+        }
+
+        #myModal button:nth-child(2n){
+            background: #6b6b6b;
+            margin-right: 0;
+        }
+
+        .modal_btn {
+            display: flex;
+            justify-content: center;
+        }
+
+
+        .dropbtn {
+            background: #0E0B85;
+            color: white;
+            padding: 10px 0;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 150px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+
+    </style>
+</head>
+<body>
+<section class="left_menu">
+    <div class="left_menu_items">
+        <h1>Happy Clients</h1>
+        <ul class="list">
+            <li class="dash">
+                <a th:href="@{'/admin/main/'}">Dashboard</a>
+            </li>
+            <li class="custom">
+                <a th:href="@{'/admin/incomingOrders/'}">Incoming Orders</a>
+            </li>
+            <li class="bilbo">
+                <a th:href="@{'/admin/allBillboards/'}">All Billboards</a>
+            </li>
+            <li class="new_bilbo">
+                <a th:href="@{'/admin/addNewBillboard/'}">Post New Billboard</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<header class="sidebar">
+    <div class="container">
+        <div class="sidebar_items">
+            <div class="enter">
+                <img  style="height: 40px" src="https://i.ibb.co.com/BffqrKK/avatar.png" class="user-pic" onclick="toggleMenu()">
+                <div class="name">
+                    <p th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
+                    <p>Super Admin</p>
+                </div>
+            </div>
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="uer-info">
+                        <img  style="height: 30px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="img2">
+                        <h3 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></h3>
+                    </div>
+                    <hr>
+                    <a th:href="@{'/mainPage/'}" class="sub-menu-link" sec:authorize="hasAuthority('MANAGER')">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Home Page</p>
+                        <span>></span>
+                    </a>
+                    <a th:href="@{'/editOrViewProfile/'}" class="sub-menu-link">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <p>Edit profile</p>
+                        <span>></span>
+                    </a>
+                    <a class="sub-menu-link" href="JavaScript:void(0)"
+                       onclick="singOutForm.submit()">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Log out</p>
+                        <form th:action="@{'/signOut'}" method="post" id="singOutForm"></form>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="change">
+    <div class="container">
+        <form th:action="@{'/admin/editBillboard'}" method="post" enctype="multipart/form-data">
+            <div class="all_edit">
+                <div class="nav">
+                    <a th:href="@{'/admin/allBillboards/'}">All billboards></a>
+                    <a href="">Details & Editing</a>
+                </div>
+                <div class="edit_item">
+                    <div class="edit_img">
+                        <div class="first">
+                            <div class="image">
+                                <img th:src="@{'/admin/getAva/' + ${billboard.billboard_url}}" id="addImg" alt="">
+                            </div>
+                            <div class="content">
+                                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                                <div class="text">Please choose only JPG file!</i></div>
+                            </div>
+                            <div id="cancel_btn"><i class="fas fa-times"></i></div>
+                            <div id="file_name"><i>File name here</i></div>
+                        </div>
+                        <input id="default-btn" type="file" name="billboard_url" hidden>
+                        <!-- <input id="upload_btn" type="submit" hidden> -->
+                        <button type="button" onclick="defaultBtnActive()" id="custom-btn" class="custom-btn">Choose a photo</button>
+                        <!-- <div class="few_img">
+                            <div class="few_items">
+                                <img src="img/detailImg2.png" alt="">
+                                <img src="img/detailImg3.png" alt="">
+                            </div>
+                            <img src="img/detailMap.png" alt="" class="map">
+                        </div> -->
+                        <div id="validation-text" style="display: none; color: red;">Please choose a JPG file.</div>
+                    </div>
+                    <div class="form_edit">
+                        <div class="form_each_line">
+                            <input type="text" name="id" th:value="${billboard.id}" hidden>
+                        </div>
+                        <div class="form_each_line">
+                            <label for="City">City</label>
+                            <select id="city" name="city" onchange="filterLocations()">
+                                <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}" th:selected="${city.id == billboard.city_id}"></option>
+                            </select>
+                        </div>
+                        <div class="form_each_line">
+                            <label for="Location">Location</label>
+                            <select id="location" name="location">
+                                <option value="">Select a location</option>
+                                <!-- Placeholder option for initial display -->
+                                <option th:each="location: ${locations}" th:value="${location.id}" th:text="${location.name}" th:attr="data-cityId=${location.city_id}" th:selected="${location.id == billboard.location_id}"></option>
+                            </select>
+                        </div>
+                        <div class="form_each_line">
+                            <label>Type</label>
+                            <select id="type" name="type">
+                                <option th:selected="${billboard.size eq 'One-sided'}" value="One-sided">One-sided</option>
+                                <option th:selected="${billboard.size eq 'Two-sided'}" value="Two-sided">Two-sided</option>
+                            </select>                        </div>
+                        <div class="form_each_line">
+                            <label for="Size">Size</label>
+                            <select id="size" name="size">
+                                <option th:selected="${billboard.size eq '3x6m'}" value="3x6m">3x6m</option>
+                                <option th:selected="${billboard.size eq '3x5m'}" value="3x5m">3x5m</option>
+                                <option th:selected="${billboard.size eq '3x7m'}" value="3x7m">3x7m</option>
+                            </select>
+                        </div>
+                        <div class="form_each_line">
+                            <label for="light">Lightning</label>
+                            <select id="light" name="isHasLightning">
+                                <option th:selected="${billboard.isHasLightning == true}" value="true">Available
+                                </option>
+                                <option th:selected="${billboard.isHasLightning == false}" value="false">Not available
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form_each_line">
+                            <label>Price($)</label>
+                            <input type="text" name="price" th:value="${billboard.price}" required oninput="validatePrice(this)">
+                            <div id="validation-price" style="display: none; color: red;">Please enter a valid number.</div>
+                        </div>
+                        <div class="detail_btn">
+                            <button type="submit" id="save_btn">Save</button>
+                            <!--                            <div class="delete_btn">-->
+                            <!--                            <button  style="background-color:red" type="button" class="delete_btn" data-bs-toggle="modal" data-bs-target="#myModal">Delete</button>-->
+                            <!--                            <div id="myModal">-->
+                            <!--                                <h3>Are you sure you want to delete?</h3>-->
+                            <!--                                <div class="modal_btn">-->
+                            <!--                                    <form id="deleteForm" th:action="@{'/admin/deleteBillboard'}" method="post">-->
+                            <!--                                        <input type="hidden" id="deleteBillboardId" name="deleteBillboardId" th:value="${billboard.id}">-->
+                            <!--                                        <button type="submit">Yes</button>-->
+                            <!--                                        <button type="button" id="myModal__close">No</button>-->
+                            <!--                                    </form>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu() {
+        subMenu.classList.toggle("open-menu");
+
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+<script th:src="@{'js/bootstrap.bundle.js'}" type="text/javascript"></script>-->
+
+<script>
+    $('.delete_btn').click(function (event) {
+        event.preventDefault();
+        var billboardId = $(this).closest('.cards_item').find('.id span').text();
+        $('#deleteBillboardId').val(billboardId);
+        $('#myOverlay').fadeIn(297, function () {
+            $('#myModal')
+                .css('display', 'block')
+                .animate({ opacity: 1 }, 198);
+        });
+    });
+
+
+    $('#myModal__close, #myOverlay').click(function () {
+        $('#myModal').animate({ opacity: 0 }, 198, function () {
+            $(this).css('display', 'none');
+            $('#myOverlay').fadeOut(297);
+        });
+    });
+</script>
+<script>
+    const first = document.querySelector(".first");
+    const fileName = document.querySelector("#file_name");
+    const cancelBtn = document.querySelector("#cancel_btn");
+    const defaultBtn = document.querySelector("#default-btn");
+    const customBtn = document.querySelector("#custom-btn");
+    const uploadBtn = document.querySelector("#upload_btn");
+    const img = document.querySelector("#addImg");
+    let regExp = /[0-9a-zA-Z\\&\"\@\{\}\[\]\, \$\=\/\-\#\(\)\. \%\+\~\_ ]+$/;
+
+
+
+    var saveBtn = document.getElementById("save_btn");
+
+    //
+    saveBtn.addEventListener("click", function() {
+        //                FormData
+        var formData = new FormData();
+
+        //             FormData                              select
+        formData.append("city", document.getElementById("city").value);
+        formData.append("location", document.getElementById("location").value);
+
+        //
+        window.location.href = "AllBilboards.html?" + new URLSearchParams(formData).toString();
+    });
+
+    //                       <select>
+    var selects = document.querySelectorAll("select");
+
+    //             <select>
+    selects.forEach(function(select) {
+        //
+        var originalValue = select.value;
+
+        //
+        select.addEventListener("change", function() {
+            //          ,
+            if (select.value !== originalValue) {
+                //                         ,
+                select.style.color = "red";
+            } else {
+                //                            ,
+                select.style.color = "";
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+    function defaultBtnActive() {
+        defaultBtn.click();
+        img.style.zIndex = '1';
+        cancelBtn.style.zIndex = '1';
+        fileName.style.zIndex = '1';
+    }
+
+    function cancelBtnActive() {
+        img.style.zIndex = '-1';
+    }
+
+
+    function uploadFile() {
+        console.log("              !");
+    }
+
+    defaultBtn.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            let fileType = file.type;
+            console.log(fileType);
+            if (!fileType.includes('image/jpg') && !fileType.includes('image/jpeg')) {
+                document.getElementById('validation-text').style.display = 'block';
+            } else {
+                document.getElementById('validation-text').style.display = 'none';
+                const reader = new FileReader();
+                reader.onload = function () {
+                    const result = reader.result;
+                    img.src = result;
+                    first.classList.add("active");
+                }
+                cancelBtn.addEventListener("click", function () {
+                    img.src = "";
+                    first.classList.remove("active");
+                });
+
+                reader.readAsDataURL(file);
+                if (this.value) {
+                    let valueStore = this.value.replace(/^.*[\\\/]/, '');
+                    fileName.textContent = valueStore;
+                }
+            }
+        }
+    });
+
+    uploadBtn.addEventListener("click", function () {
+        const file = defaultBtn.files[0];
+        if (file) {
+            uploadFile();
+        } else {
+            console.log("              !");
+        }
+    });
+</script>
+
+<script>
+    function filterLocations() {
+        var cityId = document.getElementById('city').value;
+        var locationSelect = document.getElementById('location');
+        var locations = locationSelect.getElementsByTagName('option');
+        locationSelect.options[0].text = 'Select a location';
+
+        for (var i = 0; i < locations.length; i++) {
+            var location = locations[i];
+            var cityIdAttr = location.getAttribute('data-cityId');
+
+            if (cityId === '' || cityIdAttr === cityId) {
+                location.style.display = '';
+
+            } else {
+                location.style.display = 'none';
+            }
+        }
+    }
+
+    // Initially hide all locations
+    filterLocations();
+</script>
+<script>
+    function validatePrice(input) {
+        const price = input.value;
+        const isValid = /^\d+$/.test(price); // Check if input contains only digits
+        console.log(input.value + " " + input.value.length);
+        const validationMessage = document.getElementById('validation-price');
+        if (!isValid && input.value.length > 0) {
+            validationMessage.style.display = 'block';
+        } else {
+            validationMessage.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>

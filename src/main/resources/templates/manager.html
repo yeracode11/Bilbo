@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="/js/main.js"></script>
+    <link rel="stylesheet" href="/css/manage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+    <style>
+        body{
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: ghostwhite;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            color: #000;
+        }
+
+        div, p, input, header, a, form {
+            box-sizing: border-box;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        .sub-menu {
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .uer-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .uer-info h3 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .uer-info img {
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .sub-menu hr {
+            border: 0;
+            height: 1px;
+            width: 100%;
+            background: #ccc;
+            margin: 15px 0 10px;
+        }
+
+        .sub-menu-wrap {
+            position: absolute;
+            top: 73px;
+            right: -11px;
+            width: 260px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s;
+            z-index: 2;
+        }
+
+        .sub-menu-wrap.open-menu {
+            max-height: 400px;
+        }
+
+        .sub-menu-link {
+            display: flex;
+            align-items: center;
+            color: #525252;
+            margin: 12px 0;
+        }
+
+        .sub-menu-link p {
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .sub-menu-link i {
+            margin-right: 10px;
+            width: 18px;
+            background: #e5e5e5;
+            border-radius: 50%;
+            padding: 8px;
+        }
+
+        .sub-menu-link span {
+            font-size: 22px;
+            transition: transform 0.5s;
+
+        }
+
+        .sub-menu-link:hover span{
+            transform: translateX(5px);
+        }
+
+        .sub-menu-link:hover p {
+            font-weight: 600;
+        }
+
+
+        .sidebar {
+            background: ghostwhite;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .sidebar_items {
+            position: relative;
+            padding: 20px 0;
+            display: flex;
+            justify-content: end;
+        }
+
+        .sub-menu {
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .name p {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .name p:nth-child(2n) {
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .enter {
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+
+        .enter img {
+            margin-right: 10px;
+        }
+        .name {
+            display: block;
+        }
+
+        .left_menu {
+            position: fixed;
+            background: #0E0B85;
+            width: 320px;
+            height: 100%;
+            padding: 15px 0;
+        }
+
+        .left_menu_items h1, a{
+            color: #fff;
+        }
+
+        .left_menu_items h1 {
+            font-size: 35px;
+            width: 235px;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 90px;
+        }
+
+        .list {
+            display: block;
+            text-align: left;
+        }
+
+        .list a {
+            font-size: 20px;
+            margin-left: 74px;
+            font-size: 800;
+        }
+
+        .list li {
+            margin-bottom: 30px;
+        }
+
+        .list ul {
+            padding-left: 20px;
+        }
+
+        .dash {
+            background: #FFF;
+            padding: 20px 0;
+            border-radius: 30px 0px 0px 30px;
+            margin-left: 12px;
+            width: 308px;
+        }
+
+
+        .dash a {
+            color: #0024A2;
+            margin-left: 60px;
+        }
+
+
+        .cards_info {
+            padding: 30px 0;
+        }
+
+        .cards_items {
+            margin-left: 280px;
+            display: flex;
+            margin-bottom: 70px;
+        }
+
+        .card {
+            display: block;
+            width: 200px;
+            background-color: #fff;
+            padding: 20px;
+            font-size: 20px;
+            border: 1px solid #4D49FF;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            margin-right: 40px;
+            height: 128px;
+        }
+
+
+        .card h3 {
+            font-size: 35px;
+            margin-bottom: 5px;
+        }
+
+        .card:nth-child(3n){
+            margin-right: 40px;
+        }
+
+        .text {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .red_card {
+            display: block;
+            width: 200px;
+            background-color: #001452;
+            padding: 20px;
+            font-size: 20px;
+            border: 1px solid #00145B;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            color: #FFF;
+            height: 128px;
+        }
+
+        .red_card h3 {
+            color: #FFF;
+            font-size: 35px;
+        }
+
+        .red_card img {
+            height: 50px;
+        }
+
+        .red_report {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .report_item {
+            position: relative;
+            z-index: 1;
+        }
+
+        .red_nav {
+            position: absolute;
+            left: 1px;
+            top: 27px;
+            display: none;
+            transition: 0.6s ease;
+            text-align: left;
+        }
+
+
+        .red_nav button {
+            background: #00145B;
+            width: 75px;
+            color: #FFF;
+            border: 1px solid #FFFFFF;
+            padding: 2px 0;
+            margin: 0;
+            display: block;
+            text-align-last: center;
+            cursor: pointer;
+        }
+
+        .report_item img {
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            margin: 5px 5px 0 0;
+        }
+
+
+        .report_item:hover .red_nav {
+            display: block;
+        }
+
+        .order_side {
+            margin-left: 250px;
+        }
+
+
+        table, th, td{
+            border-collapse: collapse;
+            padding: 28px;
+        }
+
+
+
+        .order_items table {
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .order_items thead {
+            color: #000;
+            border-radius: 8px;
+        }
+
+        /* thead {
+            background-color: #F4624B;
+        } */
+
+        tbody tr:nth-child(odd) {
+            background-color: #ededed;
+        }
+
+        .order_side h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 720px;
+        }
+
+        td span {
+            background-color: #00145B;
+            color: #FFF;
+            padding: 5px;
+            border-radius: 6px;
+        }
+
+        .status {
+            background: #FFF;
+            display: flex;
+            padding: 20px 30px;
+            border-bottom: 1px solid #7a7a7a;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn button{
+            background-color: #00145B;
+            width: 106px;
+            padding: 12px;
+            color: #FFF;
+            font-weight: 800;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+
+
+    </style>
+    <title>Admin Page</title>
+</head>
+<body>
+<section class="left_menu">
+    <div class="left_menu_items">
+        <h1>Happy Clients</h1>
+        <ul class="list">
+            <li class="dash">
+                <a th:href="@{'/admin/main/'}">Dashboard</a>
+            </li>
+            <li class="custom">
+                <a th:href="@{'/admin/incomingOrders/'}">Incoming Orders</a>
+            </li>
+            <li class="bilbo">
+                <a th:href="@{'/admin/allBillboards/'}">All Billboards</a>
+            </li>
+            <li class="new_bilbo">
+                <a th:href="@{'/admin/addNewBillboard/'}" >Post New Billboard</a>
+            </li>
+        </ul>
+    </div>
+</section>
+<header class="sidebar">
+    <div class="container">
+        <div class="sidebar_items">
+            <div class="enter">
+                <img  style="height: 40px" src="https://i.ibb.co.com/BffqrKK/avatar.png" class="user-pic" onclick="toggleMenu()">
+            </div>
+            <div class="name">
+                <p th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
+                <p>Super Admin</p>
+            </div>
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="uer-info">
+                        <img  style="height: 30px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="img2">
+                        <h3 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></h3>
+                    </div>
+                    <hr>
+                    <a th:href="@{'/mainPage/'}" class="sub-menu-link" sec:authorize="hasAuthority('MANAGER')">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Home Page</p>
+                        <span>></span>
+                    </a>
+                    <a th:href="@{'/editOrViewProfile/'}" class="sub-menu-link">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <p>Edit profile</p>
+                        <span>></span>
+                    </a>
+                    <a class="sub-menu-link" href="JavaScript:void(0)"
+                       onclick="singOutForm.submit()">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <p>Log out</p>
+                        <form th:action="@{'/signOut'}" method="post" id="singOutForm"></form>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="cards_info">
+    <div class="container">
+        <div class="cards_items">
+            <div class="card">
+                <div class="text">
+                    <h3 th:text="${activeOrders}"></h3>
+                    <img style="height: 20px" src="https://library.kissclipart.com/20180904/wxe/kissclipart-accept-icon-clipart-computer-icons-desktop-wallpap-8fa2de412b27967c.png" alt="#">
+                </div>
+                <p>Active Orders</p>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h3 th:text="${inActiveOrders}"></h3>
+                    <img style="height: 20px" src="https://avatars.mds.yandex.net/i?id=c8f4c21b80fbc458fab3d05da7c8d208b11c7aa6-6372745-images-thumbs&n=13" alt="#">
+                </div>
+                <p>Inactive Orders</p>
+            </div>
+            <div class="card">
+                <div class="text">
+                    <h3 th:text="${waitingOrders}"></h3>
+                    <img style="height: 35px" src="https://play-lh.googleusercontent.com/qONWu26jaZXzlZrXQxUwd5pM2cINEmKejOBJ5_wQN89wGXgD6ypraAfIgQxFMRm9CC8" alt="#">
+                </div>
+                <p>Waiting Orders</p>
+            </div>
+            <div class="red_card">
+                <div class="text">
+                    <h3 th:text="${income}"></h3>
+                    <img style="height: 20px" src="https://i.ibb.co.com/rxv42CR/m-removebg-preview.png" alt="#">
+                </div>
+                <div class="red_report">
+                    <p>All income</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Добавим скрипт Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Получаем контекст canvas для графика
+    const ctx = document.getElementById('incomeChart').getContext('2d');
+
+    // Данные для графика (замените их своими данными)
+    const dates = ['2024-01-01', '2024-02-01', '2024-03-01', '2024-04-01'];
+    const incomes = [1000, 1500, 2000, 1800];
+
+    // Создаем график с помощью Chart.js
+    const incomeChart = new Chart(ctx, {
+        type: 'line', // тип графика - линейный
+        data: {
+            labels: dates, // метки по оси X
+            datasets: [{
+                label: 'Income', // подпись к датасету
+                data: incomes, // данные для отображения
+                backgroundColor: 'rgba(255, 99, 132, 0.2)', // цвет фона графика
+                borderColor: 'rgba(255, 99, 132, 1)', // цвет линии графика
+                borderWidth: 1 // толщина линии графика
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true // начинать отсчет с 0 по оси Y
+                }
+            }
+        }
+    });
+</script>
+
+
+<script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu(){
+        subMenu.classList.toggle("open-menu");
+
+    }
+</script>
+</body>
+</html>
