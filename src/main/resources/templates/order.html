@@ -266,7 +266,7 @@
 
         .approve {
             background-color: #66BB6A;
-            border: none;
+            border: 0.5px solid #000000;
             border-radius: 5px;
             color: #fff;
             padding: 4px;
@@ -408,7 +408,7 @@
 
         .reject {
             background: #F44336;
-            border: none;
+            border: 0.5px solid #000000;
             border-radius: 5px;
             color: #fff;
             padding: 6px;
@@ -587,7 +587,7 @@
                 <tr>
                     <th></th>
                     <th>Customers who have applied for this billboard
-                        <button id="toggleRowsBtn" style="margin-left: 480px">▼</button>
+                        <button class="toggleRowsBtn" id="toggleRowsBtn" style="margin-left: 480px">▼</button>
                     </th>
                 </tr>
                 </thead>
@@ -607,14 +607,16 @@
                     </tr>
                     </thead>
                     <tbody th:each="order : ${orders}">
-                    <tr th:hidden="${order.billboard.id != billboard.id}">
+                    <tr th:hidden="${order.billboard.id != billboard.id} "
+                        class="sections"
+                    >
                         <td th:text="${order.id}"></td>
                         <td th:text="${order.user.surname}"></td>
                         <td th:text="${order.user.name}"></td>
                         <td th:text="${order.startDate}"></td>
                         <td th:text="${order.endDate}"></td>
                         <td th:text="${order.telNumber}"></td>
-                        <td th:switch="${order.status}">
+                        <td th:switch="${order.status}" class="order-status">
                             <span th:case="0" style="color: #0024A2">Waiting</span>
                             <span th:case="1" style="color: #1a8a12">Accepted</span>
                             <span th:case="2" style="color: red">Rejected</span>
@@ -640,22 +642,56 @@
         </div>
     </div>
 </section>
-
-<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
-
 <script>
-    $(document).ready(function(){
-        $("#toggleRowsBtn").click(function(){
-            $(".sheet tbody tr").each(function() {
-                const status = $(this).find("td:nth-child(7)").text().trim();
-                if (status === "Accepted" || status === "Rejected") {
-                    $(this).toggleClass("accepted rejected");
-                }
-            });
-        });
-    });
-</script>
+    const toggleRowsButtons = document.querySelectorAll('.toggleRowsBtn')
+    const allSections = document.querySelectorAll('.sections')
 
+    function hideSections(sections) {
+        sections.forEach((section) => {
+            const orderStatus = section.querySelector('.order-status')
+            if (orderStatus.textContent.trim() !== 'Waiting') {
+                section.style.display = 'none'
+            }
+        })
+    }
+
+    hideSections(allSections)
+
+    toggleRowsButtons.forEach((rowBtn) => {
+        let clickStatus = true
+        rowBtn.addEventListener('click', (e) => {
+            const currentBtn = e.currentTarget
+            const parentClass = findParentByClass(currentBtn, 'main_table')
+            const sheet = parentClass.nextElementSibling.nextElementSibling
+            const allSheetSections = sheet.querySelectorAll('.sections')
+            if (clickStatus) {
+                allSheetSections.forEach((section) => {
+                    if (section.style.display === 'none') {
+                        section.style.display = ''
+                    }
+                })
+                clickStatus = false
+            } else {
+                hideSections(allSheetSections)
+                clickStatus = true
+            }
+            console.log(clickStatus)
+        })
+    })
+
+    function findParentByClass(element, className) {
+        let parent = element.parentNode
+        while (parent) {
+            if (parent.classList.contains(className)) {
+                return parent
+            }
+            parent = parent.parentNode
+        }
+        return null
+    }
+
+</script>
+<script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
 <script>
     let subMenu = document.getElementById("subMenu");
 
@@ -663,6 +699,5 @@
         subMenu.classList.toggle("open-menu");
     }
 </script>
-
 </body>
 </html>
