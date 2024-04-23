@@ -46,7 +46,7 @@ public class MainController {
         model.addAttribute("billboards", billboardService.getAllActiveBillboards());
         model.addAttribute("cities", cityService.getAllCities());
         model.addAttribute("locations", locationService.getAllLocations());
-        if (user.getRole() == Role.MANAGER) return "redirect:/admin/main";
+        if (user.getRole() == Role.MANAGER) return "redirect:/admin/incomingOrders";
         return "main2";
     }
     @PreAuthorize("isAuthenticated()")

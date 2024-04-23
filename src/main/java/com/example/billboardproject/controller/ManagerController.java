@@ -51,15 +51,15 @@ public class ManagerController {
     @Autowired
     private OrderService orderService;
 
-    @PreAuthorize("hasAnyAuthority('MANAGER')")
-    @GetMapping(value = "/main")
-    public String adminPage(Model model) {
-        model.addAttribute("income", orderService.sumOfIncome());
-        model.addAttribute("waitingOrders", orderService.getAllWaitingOrders());
-        model.addAttribute("activeOrders", orderService.getAllActiveOrders());
-        model.addAttribute("inActiveOrders", orderService.getAllInactiveOrders());
-        return "manager";
-    }
+//    @PreAuthorize("hasAnyAuthority('MANAGER')")
+//    @GetMapping(value = "/main")
+//    public String adminPage(Model model) {
+////        model.addAttribute("income", orderService.sumOfIncome());
+////        model.addAttribute("waitingOrders", orderService.getAllWaitingOrders());
+////        model.addAttribute("activeOrders", orderService.getAllActiveOrders());
+////        model.addAttribute("inActiveOrders", orderService.getAllInactiveOrders());
+//        return "manager";
+//    }
 
     @PreAuthorize("hasAnyAuthority('MANAGER')")
     @GetMapping(value = "/incomingOrders")
@@ -68,6 +68,12 @@ public class ManagerController {
         model.addAttribute("orders", orderService.getAllOrders());
         model.addAttribute("cities", cityService.getAllCities());
         model.addAttribute("locations", locationService.getAllLocations());
+
+        model.addAttribute("income", orderService.sumOfIncome());
+        model.addAttribute("waitingOrders", orderService.getAllWaitingOrders());
+        model.addAttribute("activeOrders", orderService.getAllActiveOrders());
+        model.addAttribute("inActiveOrders", orderService.getAllInactiveOrders());
+
         return "order";
     }
     @PreAuthorize("hasAnyAuthority('MANAGER')")
