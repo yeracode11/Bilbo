@@ -93,6 +93,7 @@ public class ManagerController {
     }
 
 
+
     @PreAuthorize("hasAnyAuthority('MANAGER')")
     @GetMapping(value = "/detailEditBillboard/{billboard_id}")
     public String detailEditBillboardPage(Model model,
