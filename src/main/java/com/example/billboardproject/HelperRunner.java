@@ -29,7 +29,7 @@ public class HelperRunner implements CommandLineRunner {
         uploadUserFile();
     }
     public void uploadUserFile() throws IOException {
-        FileSystemResource csvResource = new FileSystemResource("C:/Users/bqrec/Downloads/Billboard_Sprints/BillboardSprint-main/src/main/resources/data/users.csv");
+        FileSystemResource csvResource = new FileSystemResource("src/main/resources/data/users.csv");
         MultipartFile file = new MockMultipartFile(
                 Objects.requireNonNull(csvResource.getFilename()),
                 csvResource.getFile().getAbsolutePath(),
