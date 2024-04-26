@@ -557,11 +557,11 @@
                             <div class="text">
                                 <div class="text_item">
                                     <h3>City:</h3>
-                                    <p th:text="${cities[billboard.city_id].name}"></p>
+                                    <p th:text="${cities[billboard.city_id-1].name}"></p>
                                 </div>
                                 <div class="text_item">
                                     <h3>Location:</h3>
-                                    <p th:text="${locations[billboard.location_id].name}"></p>
+                                    <p th:text="${locations[billboard.location_id-1].name}"></p>
                                 </div>
                                 <div class="text_item">
                                     <h3>Type:</h3>
