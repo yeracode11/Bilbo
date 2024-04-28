@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,6 +38,8 @@ public class MainController {
     private CityServiceImpl cityService;
     @Autowired
     private LocationServiceImpl locationService;
+    @Autowired
+    private SecurityConfig securityConfig;
 
     @GetMapping(value = "/")
     public String authPage() {
@@ -117,7 +120,8 @@ public class MainController {
         return "details";
     }
 
-@PreAuthorize("isAuthenticated()")
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/editOrViewProfile")
     public String editOrViewProfilePage(Model model) {
         User user = userService.getCurrentUser();
@@ -167,4 +171,6 @@ public class MainController {
         }
         return "redirect:/editOrViewProfile/?additional";
     }
+
+
 }
