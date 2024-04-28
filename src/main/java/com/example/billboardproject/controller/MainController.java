@@ -114,7 +114,54 @@ public class MainController {
         return "details";
     }
 
+@PreAuthorize("isAuthenticated()")
+    @GetMapping(value = "/editOrViewProfile")
+    public String editOrViewProfilePage(Model model) {
+        User user = userService.getCurrentUser();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        if (user.getBirthday() != null) {
+            Date myDate;
+            try {
+                myDate = dateFormat.parse(user.getBirthday());
+                model.addAttribute("currentUserBirthday", myDate);
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        model.addAttribute("currentUser", user);
+        return "editProfile";
+    }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping(value = "/changePassword")
+    public String changePassword(@RequestParam(name = "reg_password") String password,
+                                 @RequestParam(name = "userId") Long id) {
+        User user = userService.getUserById(id);
+        if (user != null) {
+            user.setPassword(securityConfig.passwordEncoder().encode(password));
+            userService.updateUser(user);
+        }
+        return "redirect:/editOrViewProfile/?successful";
+    }
 
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping(value = "/addAdditionalInfo")
+    public String addAdditionalInfo(@RequestParam(name = "gender") String gender,
+                                    @RequestParam(name = "birthday") String birthday,
+                                    @RequestParam(name = "address") String address,
+                                    @RequestParam(name = "city") String city,
+                                    @RequestParam(name = "phone") String phone,
+                                    @RequestParam(name = "userId") Long id) {
+        User user = userService.getUserById(id);
+        if (user != null) {
+            user.setAddress(address);
+            user.setBirthday(birthday);
+            user.setCity(city);
+            user.setGender(gender);
+            user.setPhone(phone);
+            userService.updateUser(user);
+        }
+        return "redirect:/editOrViewProfile/?additional";
+    }
 }
