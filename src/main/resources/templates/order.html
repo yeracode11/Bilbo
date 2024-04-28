@@ -463,7 +463,7 @@
     <div class="container">
         <div class="sidebar_items">
             <div class="enter">
-                <img style="height: 40px" src="https://i.ibb.co.com/BffqrKK/avatar.png" onclick="toggleMenu()" alt="">
+                <img style="height: 40px ; border: 1px solid #696969; border-radius: 50%" src="https://i.ibb.co.com/BffqrKK/avatar.png" onclick="toggleMenu()" alt="">
             </div>
             <div class="name">
                 <p th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
@@ -512,7 +512,7 @@
             <div class="card">
                 <div class="text_card">
                     <h3 th:text="${inActiveOrders}"></h3>
-                    <img style="height: 20px" src="https://avatars.mds.yandex.net/i?id=c8f4c21b80fbc458fab3d05da7c8d208b11c7aa6-6372745-images-thumbs&n=13" alt="#">
+                    <img style="height: 20px; border: 1px solid #696969; border-radius: 50%" src="https://avatars.mds.yandex.net/i?id=c8f4c21b80fbc458fab3d05da7c8d208b11c7aa6-6372745-images-thumbs&n=13" alt="#">
                 </div>
                 <p>Inactive Orders</p>
             </div>
@@ -557,11 +557,11 @@
                             <div class="text">
                                 <div class="text_item">
                                     <h3>City:</h3>
-                                    <p th:text="${cities[billboard.city_id-1].name}"></p>
+                                    <p th:text="${cities[billboard.city_id - 1].name}"></p>
                                 </div>
                                 <div class="text_item">
                                     <h3>Location:</h3>
-                                    <p th:text="${locations[billboard.location_id-1].name}"></p>
+                                    <p th:text="${locations[billboard.location_id].name}"></p>
                                 </div>
                                 <div class="text_item">
                                     <h3>Type:</h3>
