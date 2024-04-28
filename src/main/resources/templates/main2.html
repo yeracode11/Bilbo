@@ -902,7 +902,8 @@
 
 <section class="items" id="cards">
   <div class="container">
-    <h1>All Billboards</h1>
+    <h1>Welcome <span th:text="${#authentication.getPrincipal().name}"></span> !</h1>
+    <h3 style="margin-left: 200px; margin-bottom: 10px;">All Billboards</h3>
     <div class="cards">
       <div class="cards_item" th:each="billboard : ${billboards}">
         <div class="img_banner">
