@@ -518,36 +518,36 @@
   <div class="container">
     <div class="sidebar_items">
       <div class="enter">
-        <img  style="height: 40px" src="https://i.ibb.co.com/BffqrKK/avatar.png"  class="user-pic" onclick="toggleMenu()">
-        <div class="name">
-          <p th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
-          <p>Super Admin</p>
-        </div>
-        <div class="sub-menu-wrap" id="subMenu">
-          <div class="sub-menu">
-            <div class="uer-info">
-              <img style="height: 40px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="img2">
-              <h3 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></h3>
-            </div>
-            <hr>
-            <a th:href="@{'/mainPage/'}" class="sub-menu-link" sec:authorize="hasAuthority('MANAGER')">
-              <i class="fa-solid fa-user"></i>
-              <p>Home Page</p>
-              <span>></span>
-            </a>
-            <a th:href="@{'/editOrViewProfile/'}" class="sub-menu-link">
-              <i class="fa-solid fa-pen-to-square"></i>
-              <p>Edit profile</p>
-              <span>></span>
-            </a>
-            <a class="sub-menu-link" href="JavaScript:void(0)"
-               onclick="singOutForm.submit()">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <p>Log out</p>
-              <form th:action="@{'/signOut'}" method="post" id="singOutForm"></form>
-              <span>></span>
-            </a>
+        <img  style="height: 40px; border: 1px solid #696969; border-radius: 50%" src="https://i.ibb.co.com/BffqrKK/avatar.png" class="user-pic" onclick="toggleMenu()">
+      </div>
+      <div class="name">
+        <p th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></p>
+        <p>Super Admin</p>
+      </div>
+      <div class="sub-menu-wrap" id="subMenu">
+        <div class="sub-menu">
+          <div class="uer-info">
+            <img  style="height: 30px" src="https://img.freepik.com/free-vector/illustration-user-avatar-icon_53876-5907.jpg?w=1380&t=st=1710492001~exp=1710492601~hmac=2facf8b6dd9ab55929f1b98082e457f4d117dc80deae716d47b81ed83ade7693" class="img2">
+            <h3 th:text="${#authentication.getPrincipal().name} + ' ' + ${#authentication.getPrincipal().surname}"></h3>
           </div>
+          <hr>
+          <a th:href="@{'/mainPage/'}" class="sub-menu-link" sec:authorize="hasAuthority('MANAGER')">
+            <i class="fa-solid fa-user"></i>
+            <p>Home Page</p>
+            <span>></span>
+          </a>
+          <a th:href="@{'/editOrViewProfile/'}" class="sub-menu-link">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <p>Edit profile</p>
+            <span>></span>
+          </a>
+          <a class="sub-menu-link" href="JavaScript:void(0)"
+             onclick="singOutForm.submit()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <p>Log out</p>
+            <form th:action="@{'/signOut'}" method="post" id="singOutForm"></form>
+            <span>></span>
+          </a>
         </div>
       </div>
     </div>
