@@ -1121,9 +1121,11 @@
 
       const orderBtn = document.getElementById('saveButton')
       const modalClose = document.getElementById('myModal__close')
+      const overlay = document.getElementById('myOverlay')
 
       orderBtn.addEventListener('click', () => {
         modal.style.display = 'block'
+        overlay.style.display = 'block'
       })
 
       modalClose.addEventListener('click', () => {
