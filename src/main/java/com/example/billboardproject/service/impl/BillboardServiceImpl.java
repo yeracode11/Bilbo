@@ -17,7 +17,7 @@ public class BillboardServiceImpl implements BillboardService {
 
     @Override
     public List<Billboard> getAllBillboards() {
-        return billboardRepository.findAllOrderByCreatedAt();
+        return billboardRepository.findAll();
     }
 
     @Override
