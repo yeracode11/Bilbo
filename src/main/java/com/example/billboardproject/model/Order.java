@@ -2,15 +2,17 @@ package com.example.billboardproject.model;
 
 import lombok.*;
 
-import javax.persistence.*;
-import java.time.LocalDateTime;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @NoArgsConstructor
 @Getter
 @Setter
 @AllArgsConstructor
-@Table(name = "order_for_billboards")
+@Table(name = "OrderForBillboards")
 public class Order extends BaseEntity{
     private String startDate;
     private String endDate;
@@ -23,8 +25,4 @@ public class Order extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Billboard billboard;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
-
 }
