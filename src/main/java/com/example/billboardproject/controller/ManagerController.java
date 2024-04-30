@@ -223,6 +223,7 @@ public class ManagerController {
                 .type(type)
                 .size(size)
                 .city_id(city)
+//                .createdAt(LocalDateTime.now())
                 .build();
 
 
@@ -256,9 +257,6 @@ public class ManagerController {
             ClassPathResource resource = new ClassPathResource(pictureUrl);
             in = resource.getInputStream();
         }
-
         return IOUtils.toByteArray(in);
     }
-
-
 }
