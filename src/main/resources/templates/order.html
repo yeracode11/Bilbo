@@ -168,6 +168,10 @@
             overflow: hidden;
             transition: max-height 0.5s;
         }
+
+        .sub-menu-wrap.open-menu {
+            max-height: 400px;
+        }
         .sub-menu-link {
             display: flex;
             align-items: center;
@@ -602,6 +606,7 @@
                         <th>Last Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Month</th>
                         <th>Phone Number</th>
                         <th>Status</th>
                         <th>Decision</th>
@@ -616,6 +621,7 @@
                         <td th:text="${order.user.name}"></td>
                         <td th:text="${order.startDate}"></td>
                         <td th:text="${order.endDate}"></td>
+                        <td>May-June</td>
                         <td th:text="${order.telNumber}"></td>
                         <td th:switch="${order.status}" class="order-status">
                             <span th:case="0" style="color: #0024A2">Waiting</span>
