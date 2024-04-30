@@ -2,7 +2,9 @@ package com.example.billboardproject.model;
 
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
