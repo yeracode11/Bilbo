@@ -16,7 +16,7 @@ public class OrderServiceImpl  implements OrderService {
 
     @Override
     public List<Order> getAllOrdersByBillboardId(Long id) {
-        return orderRepository.findOrdersByBillboard_Id(id);
+        return orderRepository.findOrdersByBillboardId(id);
     }
 
     @Override
@@ -79,12 +79,13 @@ public class OrderServiceImpl  implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+        return orderRepository.findOrdersBySorting();
     }
+
 
     @Override
     public List<Order> getAllOrdersByUserId(Long id) {
-        return orderRepository.findOrdersByUser_Id(id);
+        return orderRepository.findOrdersByUserId(id);
     }
 
     @Override
@@ -97,4 +98,5 @@ public class OrderServiceImpl  implements OrderService {
 
         return check;
     }
+
 }
