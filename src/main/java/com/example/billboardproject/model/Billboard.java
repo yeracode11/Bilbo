@@ -2,9 +2,7 @@ package com.example.billboardproject.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -21,7 +19,4 @@ public class Billboard extends BaseEntity{
     private boolean isHasLightning;
     private int price;
     private boolean isActive;
-
-    @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
 }
