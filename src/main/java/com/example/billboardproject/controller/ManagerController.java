@@ -200,6 +200,7 @@ public class ManagerController {
                 .type(type)
                 .size(size)
                 .city_id(city)
+                .createdAt(LocalDateTime.now())
                 .build();
 
 
