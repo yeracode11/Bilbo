@@ -1,102 +1,27 @@
-package com.example.billboardproject.service.impl;
+package com.example.billboardproject.service;
 
 import com.example.billboardproject.model.Order;
-import com.example.billboardproject.repository.OrderRepository;
-import com.example.billboardproject.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class OrderServiceImpl  implements OrderService {
+public interface OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository;
+    int sumOfIncome();
 
-    @Override
-    public List<Order> getAllOrdersByBillboardId(Long id) {
-        return orderRepository.findOrdersByBillboardId(id);
-    }
+    int getAllWaitingOrders();
+    int getAllActiveOrders();
+    int getAllInactiveOrders();
 
-    @Override
-    public Order getOrderById(Long id) {
-        return orderRepository.getReferenceById(id);
-    }
+    boolean addOrder(Order order);
 
-    @Override
-    public int sumOfIncome() {
-        List<Order> orders = getAllOrders();
-        int sum = 0;
-        for (Order order : orders) {
-            if (order.getStatus() == 1) {
-                sum += order.getBillboard().getPrice();
-            }
-        }
-        return sum;
-    }
+    Order editOrder(Order order);
 
-    @Override
-    public int getAllActiveOrders() {
-        List<Order> orders = getAllOrders();
-        int sum = 0;
-        for (Order order : orders) {
-            if (order.getStatus() == 1) {
-                sum += 1;
-            }
-        }
-        return sum;
-    }
+    Order getOrderById(Long id);
 
-    @Override
-    public int getAllInactiveOrders() {
-        List<Order> orders = getAllOrders();
-        int sum = 0;
-        for (Order order : orders) {
-            if (order.getStatus() == 2) {
-                sum += 1;
-            }
-        }
-        return sum;
-    }
+    List<Order> getAllOrdersByUserId(Long id);
 
-    @Override
-    public int getAllWaitingOrders() {
-        List<Order> orders = getAllOrders();
-        int sum = 0;
-        for (Order order : orders) {
-            if (order.getStatus() == 0) {
-                sum += 1;
-            }
-        }
-        return sum;
-    }
+    List<Order> getAllOrdersByBillboardId(Long id);
 
-    @Override
-    public Order editOrder(Order order) {
-        return orderRepository.save(order);
-    }
-
-    @Override
-    public List<Order> getAllOrders() {
-        return orderRepository.findOrdersBySorting();
-    }
-
-
-    @Override
-    public List<Order> getAllOrdersByUserId(Long id) {
-        return orderRepository.findOrdersByUserId(id);
-    }
-
-    @Override
-    public boolean addOrder(Order order) {
-        boolean check = false;
-        if (order != null) {
-            orderRepository.save(order);
-            check = true;
-        }
-
-        return check;
-    }
+    List<Order> getAllOrders();
 
 }
