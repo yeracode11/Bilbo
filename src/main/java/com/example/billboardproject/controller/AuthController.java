@@ -31,6 +31,11 @@ public class AuthController {
         return "register1";
     }
 
+    @GetMapping(value = "/manager")
+    public String managerPage() {
+        return "login_manager";
+    }
+
     @PostMapping(value = "/register")
     public String registerPage(@RequestParam(name = "reg_email") String email,
                                @RequestParam(name = "reg_password") String password,
