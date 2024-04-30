@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -121,7 +120,7 @@ public class ManagerController {
         model.addAttribute("currentMonth", currentMonth);
         model.addAttribute("billboards", billboardService.getAllActiveBillboards());
         model.addAttribute("notActiveBillboards", billboardService.getAllNotActiveBillboards());
-        return "AllBilboards";
+        return "allBilboards";
     }
 
     @PreAuthorize("hasAnyAuthority('MANAGER')")
@@ -201,7 +200,6 @@ public class ManagerController {
                 .type(type)
                 .size(size)
                 .city_id(city)
-                .createdAt(LocalDateTime.now())
                 .build();
 
 
