@@ -19,4 +19,7 @@ public class Billboard extends BaseEntity{
     private boolean isHasLightning;
     private int price;
     private boolean isActive;
+
+    @Column(nullable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 }
