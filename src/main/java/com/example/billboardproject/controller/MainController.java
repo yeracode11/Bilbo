@@ -171,6 +171,4 @@ public class MainController {
         }
         return "redirect:/editOrViewProfile/?additional";
     }
-
-
 }
