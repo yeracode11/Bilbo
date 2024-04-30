@@ -706,5 +706,19 @@
         subMenu.classList.toggle("open-menu");
     }
 </script>
+    <script>
+    const orderItems = document.querySelectorAll('.order_items')
+
+    const container = document.querySelector('.orders .container')
+    let first = document.querySelector('.order_items:first-child')
+
+    orderItems.forEach((orderItem) => {
+        const status = orderItem.querySelector('.order-status')
+        if (status.textContent.trim() === 'Waiting') {
+            container.insertBefore(orderItem, first)
+            first = orderItem
+        }
+    })
+</script>
 </body>
 </html>
